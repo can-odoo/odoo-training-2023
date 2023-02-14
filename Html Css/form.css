@@ -1,0 +1,48 @@
+.detail{
+	margin-left: 20px;
+}
+
+.dis{
+	margin: 20px;
+	width: 950px;
+	height: 150px;
+	border: 1px solid black;
+}
+
+.form1{
+	margin: 20px;
+	width: 925px;
+	height: 200px;
+	border: 1px solid black;
+	padding:10px;
+}
+
+
+.personal_info{
+	display: flex;
+	justify-content: space-between;
+}
+
+.img{
+	margin-right: 28px;
+	margin-top: 17px;
+	border: 1px solid black;
+	width: 78px;
+	height: 98px;
+}
+
+.btn{
+	margin: 10px;
+}
+
+#bt1,#bt2{
+	background-color: magenta;
+	width: 40px;
+	height: 20px;
+
+}
+
+#bt2{
+	background-color: blue;
+}
+
