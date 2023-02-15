@@ -1,4 +1,4 @@
 {
-	'name':'Self Module',
-	'summary':'This is the self module'
+	'name':'Showroom Manager',
+	'summary':'Hey! I am your showroom manager, Lets have a managed showroom'
 }
