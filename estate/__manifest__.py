@@ -1,3 +1,6 @@
 {
-	'name': 'Real Estate'
+	'name': 'Real Estate',
+    'data' : [
+		'security/ir.model.access.csv'
+	]
 }
