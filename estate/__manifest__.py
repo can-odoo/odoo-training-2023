@@ -1,4 +1,7 @@
 {
   'name':'estate',
-  'description':''
+  'description':'Real state module description',
+  'data':[
+           'security/ir.model.access.csv',
+  ]
 }

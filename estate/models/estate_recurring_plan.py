@@ -13,8 +13,10 @@ class RecurringPlan(models.Model):
      bedrooms = fields.Integer()
      living_area = fields.Integer()
      garden = fields.Boolean()
-     # garden_orientation = fields.Selection(
-     #    string='Type',
-     #    selection=[('lead', 'Lead'), ('opportunity', 'Opportunity')],
-     #    help="Type is used to separate Leads and Opportunities")
-
+     garden_orientation = fields.Selection(
+        string='Type',
+        selection=[('east', 'East'), 
+                   ('west', 'West'), 
+                   ('north','North'), 
+                   ('south','South')],
+        help="Type is used to separate")
