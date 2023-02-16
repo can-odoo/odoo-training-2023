@@ -1,1 +1,0 @@
-from . import showroom_property
