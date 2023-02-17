@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <menuitem id="franchise_menu_root" name="Franchise">
+        <menuitem id="franchise_first_level_menu" name="First Level">
+            <menuitem id="franchise_model_menu_action" action="franchise_property_action" />
+    
+        </menuitem>
+    </menuitem>
+</odoo>

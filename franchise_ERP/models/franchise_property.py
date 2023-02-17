@@ -8,13 +8,11 @@ class FranchiseProperty(models.Model):
     franchise_id = fields.Integer(required=True)
     franchise_owner = fields.Char(required=True)
     no_of_product = fields.Integer(default=0)
-    opening_date = fields.Date()
-    total_sale = fields.Float()
-    total_revanue = fields.Float("Total revanue generated :") 
+    opening_date = fields.Date(default = fields.Date.today)
+    total_sale = fields.Float(copy=False)
+    total_revanue = fields.Float("Total revanue :",readonly=True,default=True,copy=False) 
     phone_no =fields.Char()
-    type_franchise = fields.Char()
-
-
+    type_franchise = fields.Selection(selection = [('job franchise','job franchise'),('product franchise','product franchise'),('business format franchise','business format franchise'),('investment franchise','investment franchise'),('conversion franchise','conversion franchise')])
 
 
 
