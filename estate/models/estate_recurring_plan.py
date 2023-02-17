@@ -1,4 +1,5 @@
 from odoo import fields, models
+from dateutil.relativedelta import relativedelta
 
 class RecurringPlan(models.Model):
      _name="estate.recurring.plan"
@@ -7,12 +8,11 @@ class RecurringPlan(models.Model):
      name = fields.Char(required=True)
      description = fields.Char()
      postalcode = fields.Char()
-     date_availability = fields.Date()
      expected_price = fields.Float(required=True)
-     selling_price = fields.Float()
-     bedrooms = fields.Integer()
-     living_area = fields.Integer()
+     bedrooms = fields.Integer(default='2')
+     facades = fields.Integer()
      garden = fields.Boolean()
+     active=fields.Boolean(active=False, default=True)
      garden_orientation = fields.Selection(
         string='Type',
         selection=[('east', 'East'), 
@@ -20,3 +20,16 @@ class RecurringPlan(models.Model):
                    ('north','North'), 
                    ('south','South')],
         help="Type is used to separate")
+     date_availability = fields.Date(copy=False, default=fields.date.today() + relativedelta(months=3))
+     selling_price = fields.Float(readonly='1', copy=False)  #for read only field readonly=1 
+     living_area = fields.Integer()
+     garage = fields.Boolean()
+     state = fields.Selection(string='Type',
+                              selection=[('new','New'),
+                                         ('offer received','Offer Received'),
+                                         ('offer accepted', 'Offer Accepted'),
+                                         ('sold and canceled','Sold And Canceled')],
+                              help="Type is used to seprate",
+                              required=True,
+                              copy=False,
+                              default="new")

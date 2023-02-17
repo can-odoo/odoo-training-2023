@@ -4,10 +4,12 @@
   'version': '1.0',
   'category': 'App/CRM',
   'sequence': 25,
-  'summary': 'Track leads and open - close opportunities',
+  'summary': 'carDekho',
   'description': "Finds car on cheapest price and beautiful look",
   'website': 'https://www.odoo.com/carDekhoApp/module',
   'data':[
          'security/ir.model.access.csv',
+         'views/cardekho_details_views.xml',
+         'views/cardekho_menus.xml',
   ]
 }
