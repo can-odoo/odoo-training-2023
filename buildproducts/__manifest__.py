@@ -10,6 +10,10 @@
 		'security/ir.model.access.csv',
 
 
+		'views/build_products_view.xml',
+		'views/buildproducts_menus.xml'
+
+
 
 	]
 
