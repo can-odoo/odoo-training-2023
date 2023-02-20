@@ -1,11 +1,10 @@
 from odoo import fields, models
-from dateutil.relativedelta import relativedelta
 
 class RecurringPlan(models.Model):
      _name="estate.recurring.plan"
      _description="Estate Property revenue plans"
 
-     name = fields.Char(required=True)
+     name = fields.Char('Property Name',required=True)
      description = fields.Char()
      postalcode = fields.Char()
      expected_price = fields.Float(required=True)

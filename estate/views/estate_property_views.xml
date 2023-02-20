@@ -10,11 +10,104 @@
             <field name="res_model">estate.recurring.plan</field>
             <field name="view_mode">tree,form</field>
         </record>
-
         <menuitem id="test_menu_root" name="EState">
             <menuitem id="test_first_level_menu" name="Home">
                 <menuitem id="test_model_menu_action" action="test_model_action"/>
                 <menuitem id="test_model_menu_action1" action="test_model_action1"/>
             </menuitem>
         </menuitem>
+        <!-- List View -->
+        <record id="estate_list_reason_view_tree" model="ir.ui.view">
+            <field name="name">estate.recurring.plan</field>
+            <field name="model">estate.recurring.plan</field>
+            <field name="arch" type="xml">
+                <tree string="Tests">
+                    <field name="name"/>
+                    <field name="postalcode"/>
+                    <field name="state"/>
+                    <field name="expected_price"/>
+                    <field name="selling_price"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="estate_from_reason_view_form" model="ir.ui.view">
+            <field name="name">estate.recurring.plan</field>
+            <field name="model">estate.recurring.plan</field>
+            <field name="arch" type="xml">
+                <form string="Test">
+                    <sheet>
+                        <header>
+                            <field name="name"/>
+                        </header>
+                        <group>
+                            <group>
+                                <field name="postalcode"/>
+                            </group>
+                            <group>
+                                <field name="expected_price"/>
+                            </group>
+                            <group>
+                                <field name="selling_price"/>
+                            </group>
+                            <group>
+                                <field name="date_availability"/>
+                            </group>
+                            <notebook>
+                                <page string="Description">
+                                    <group>
+                                        <field name="description"/>
+                                    </group>
+                                    <group>
+                                        <field name="bedrooms"/>
+                                    </group>
+                                    <group>
+                                        <field name="garden"/>
+                                    </group>
+                                    <group>
+                                        <field name="facades"/>
+                                    </group>
+                                    <group>
+                                        <field name="living_area"/>
+                                    </group>
+                                    <group>
+                                        <field name="garage"/>
+                                    </group>
+                                    <group>
+                                        <field name="garden_orientation"/>
+                                    </group>
+                                    <group>
+                                        <field name="state"/>
+                                    </group>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- Search -->
+        <record id="estate_search_reason_view_form" model="ir.ui.view">
+            <field name="name">estate.recurring.plan</field>
+            <field name="model">estate.recurring.plan</field>
+            <field name="arch" type="xml">
+                <search string="Test">
+                    <field name="name" />
+                    <field name="bedrooms" />
+                    <field name="facades" />
+                    <field name="postalcode" />
+                    <field name="expected_price" />
+                    <!-- group by and filter -->
+                    <separator/>
+                        <filter string="State" 
+                                name="inactive" 
+                                domain="['|',('state', '=', 'new'),('state', '=', 'offer received')]"/>
+                            <group expand="1" string="Group By">
+                                <filter string="Postal Code" name="provider" context="{'group_by':'postalcode'}"/>
+                            </group>
+                </search>
+            </field>    
+        </record>
     </odoo>

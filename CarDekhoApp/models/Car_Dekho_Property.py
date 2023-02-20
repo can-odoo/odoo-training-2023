@@ -21,7 +21,7 @@ class CarDekhoProperty(models.Model):
                    ('above 700hz','Above 700HZ')],
           help="Type is used to separate")
      booking_date_upto=fields.Date()
-     car_price = fields.Float(required=True, readonly='1')
+     car_price = fields.Float()
      state = fields.Selection(string='Type',
                               selection=[('new','New'),
                                          ('old','Old'),

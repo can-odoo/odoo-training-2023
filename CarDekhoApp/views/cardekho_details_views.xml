@@ -11,4 +11,96 @@
                 <menuitem id="test_model_menu_action" action="test_model_action"/>
             </menuitem>
         </menuitem>
+
+        <!-- List View -->
+        <record id="cardekho_lost_reason_view_tree" model="ir.ui.view">
+            <field name="name">car.dekho.property</field>
+            <field name="model">car.dekho.property</field>
+            <field name="arch" type="xml">
+                <tree string="Tests">
+                    <field name="car_name" />
+                    <field name="car_code"/>
+                    <field name="license_number" />
+                    <field name="booking_date_upto" />
+                    <field name="car_price" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="cardekho_lost_reason_view_form" model="ir.ui.view">
+            <field name="name">car.dekho.property</field>
+            <field name="model">car.dekho.property</field>
+            <field name="arch" type="xml">
+                <form string="Test">
+                    <sheet>
+                        <header>
+                            <field name="car_name"/>
+                        </header>
+                        <group>
+                            <group>
+                                <field name="car_code"/>
+                            </group>
+                            <group>
+                                <field name="license_number"/>
+                            </group>
+                            <group>
+                                <field name="booking_date_upto"/>
+                            </group>
+                            <group>
+                                <field name="car_price"/>
+                            </group>
+                            <notebook>
+                                <page string="Description">
+                                    <group>
+                                        <field name="description"/>
+                                    </group>
+                                    <group>
+                                        <field name="fuel_type"/>
+                                    </group>
+                                    <group>
+                                        <field name="color"/>
+                                    </group>
+                                    <group>
+                                        <field name="siting_capacity"/>
+                                    </group>
+                                    <group>
+                                        <field name="fuel_consumption"/>
+                                    </group>
+                                    <group>
+                                        <field name="engine_frequency"/>
+                                    </group>
+                                    <group>
+                                        <field name="state"/>
+                                    </group>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- For Search -->
+        <record id="cardekho_search_reason_view_form" model="ir.ui.view">
+            <field name="name">car.dekho.property</field>
+            <field name="model">car.dekho.property</field>
+            <field name="arch" type="xml">
+                <search string="Test">
+                    <field name="car_name" />
+                    <field name="state" />
+                    <field name="engine_frequency" />
+                    <field name="car_code" />
+                    <field name="car_price" />
+                    <!-- group by and filter -->
+                    <separator/>
+                        <filter string="Fuel" 
+                                name="inactive" 
+                                domain="['|',('fuel_type', '=', 'petrol'),('state', '=', 'cng')]"/>
+                            <group expand="1" string="Group By">
+                                <filter string="Car Code" name="provider" context="{'group_by':'car_code'}"/>
+                            </group>
+                </search>
+            </field>    
+        </record>
     </odoo>
