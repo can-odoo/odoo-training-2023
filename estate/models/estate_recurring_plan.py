@@ -20,7 +20,7 @@ class RecurringPlan(models.Model):
                    ('north','North'), 
                    ('south','South')],
         help="Type is used to separate")
-     date_availability = fields.Date(copy=False, default=fields.date.today() + relativedelta(months=3))
+     date_availability = fields.Date(copy=False, default=fields.Date.add(fields.Date.today(),months=3))
      selling_price = fields.Float(readonly='1', copy=False)  #for read only field readonly=1 
      living_area = fields.Integer()
      garage = fields.Boolean()

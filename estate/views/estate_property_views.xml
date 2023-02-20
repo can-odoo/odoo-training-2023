@@ -1,13 +1,20 @@
 <?xml version="1.0"?>
-<odoo>
-<record id="test_model_action" model="ir.actions.act_window">
-    <field name="name">New File</field>
-    <field name="res_model">estate.recurring.plan</field>
-    <field name="view_mode">tree,form</field>
-</record>
-<record id="test_model_action1" model="ir.actions.act_window">
-    <field name="name">Save</field>
-    <field name="res_model">estate.recurring.plan</field>
-    <field name="view_mode">tree,form</field>
-</record>
-</odoo>
+    <odoo>
+        <record id="test_model_action" model="ir.actions.act_window">
+            <field name="name">File</field>
+            <field name="res_model">estate.recurring.plan</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="test_model_action1" model="ir.actions.act_window">
+            <field name="name">Save</field>
+            <field name="res_model">estate.recurring.plan</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="test_menu_root" name="EState">
+            <menuitem id="test_first_level_menu" name="Home">
+                <menuitem id="test_model_menu_action" action="test_model_action"/>
+                <menuitem id="test_model_menu_action1" action="test_model_action1"/>
+            </menuitem>
+        </menuitem>
+    </odoo>

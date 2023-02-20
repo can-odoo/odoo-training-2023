@@ -10,6 +10,5 @@
   'data':[
          'security/ir.model.access.csv',
          'views/cardekho_details_views.xml',
-         'views/cardekho_menus.xml',
   ]
 }
