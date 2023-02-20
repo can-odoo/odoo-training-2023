@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <odoo>
+
+    <!-- Menu -->
+    <menuitem id="franchise_menu_root" name="Franchise">
+        <menuitem id="franchise_first_level_menu" name="Explore">
+            <menuitem id="franchise_model_menu_action" action="franchise_property_action" name="Franchies"/>
+        </menuitem>
+    </menuitem>
+
+    <!-- Record -->
     <record id="franchise_property_action" model="ir.actions.act_window">
         <field name="name">Franchise Property Action</field>
         <field name="res_model">franchise.property</field>
         <field name="view_mode">tree,form</field>
-        
     </record>
-    
 </odoo>
