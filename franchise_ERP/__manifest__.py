@@ -5,7 +5,7 @@
 		'security/ir.model.access.csv', 
         
 		'views/franchise_property_view.xml',
-		'views/franchise_menus.xml'
+		# 'views/franchise_menus.xml'
   
 	]
 
