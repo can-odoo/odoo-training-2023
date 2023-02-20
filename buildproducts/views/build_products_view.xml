@@ -6,4 +6,17 @@
     <field name="view_mode">tree,form</field>
     </record>
 
+     <record id="view_products_list" model="ir.ui.view">
+        <field name="name">build.products.list</field>
+        <field name="model">build.products</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="product_type"/>
+                <field name="product_grade"/>
+                <field name="product_price"/>
+            </tree>
+        </field>
+    </record>
+
 </odoo>
