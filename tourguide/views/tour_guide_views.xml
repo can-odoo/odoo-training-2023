@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="tour_guide_action" model="ir.actions.act_window">
+    <field name="name">Tours</field>
+    <field name="res_model">tour.guide</field>
+    <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>
