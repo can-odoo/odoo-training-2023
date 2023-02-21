@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <odoo>
-        <!-- tour menus -->
+
+    <!-- tour menus -->
      <menuitem id="tour_menu_root" name="Tour Guide">
         <menuitem id="menu_tour_guide" name="Tour">
             <menuitem id="menu_tour_guide_action" action="tour_guide_action"/>
@@ -37,7 +38,7 @@
             <form string="Tours">
                 <sheet>
                     <h1>
-                        <field name="name"/>
+                        <field name="name" placeholder="Enter Tour Name"/>
                     </h1>
                     <div style="height:20px"/>
                     <group>
