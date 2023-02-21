@@ -86,7 +86,7 @@
                 <field name="living_area" string="Living Area(sqm)"/>
                 <field name="facades" string="Facades"/>
                 <!-- Filter -->
-                <filter name="available" string="Available" domain="['|',('state','=','new'),('state','=','offer_received')]"/>
+                <filter name="available" string="Available" domain="[('state','in',['new','offer_received'])]"/>
                 <!-- Context -->
                 <filter name="groupby_price" string="Price" context="{'group_by': 'expected_price'}"/>
             </search>
