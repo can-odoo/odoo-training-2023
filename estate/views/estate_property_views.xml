@@ -102,7 +102,7 @@
                     <field name="facades" />
                     <field name="postalcode"/>
                     <field name="expected_price"/>
-                    <!-- group by and filter -->
+                    <!-- group by and filter Tag -->
                     <separator/>
                         <filter string="State" 
                                 name="inactive" 

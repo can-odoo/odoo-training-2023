@@ -96,6 +96,7 @@
                                 domain="['|',('fuel_type', '=', 'petrol'),('state', '=', 'cng')]"/>
                             <group expand="1" string="Group By">
                                 <filter string="Car Code" name="provider" context="{'group_by':'car_code'}"/>
+                                 <!-- name is logical name used for inheritance hook -->
                             </group>
                 </search>
             </field>    
