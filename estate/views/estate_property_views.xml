@@ -29,7 +29,7 @@
                 </tree>
             </field>
         </record>
-        <!-- Form View -->
+        <!-- Form View Here -->
         <record id="estate_from_reason_view_form" model="ir.ui.view">
             <field name="name">estate.recurring.plan</field>
             <field name="model">estate.recurring.plan</field>
