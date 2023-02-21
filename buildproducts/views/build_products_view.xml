@@ -43,7 +43,6 @@
                             <field name="product_grade"/>
                         </group>
                     </group>
-                    <div style="height: 30px"/>
                     <notebook>
                         <page string="Description">
                             <group>
