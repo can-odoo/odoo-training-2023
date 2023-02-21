@@ -19,7 +19,7 @@ class EstateProperty(models.Model):
     garden_orientation = fields.Selection(selection=[('north', 'North'), ('south','South'), ('west','West'), ('east', 'East')])
     state = fields.Selection([
         ('new', 'New'),
-        ('offer_recieved', 'Offer Recieved'),
+        ('offer_received', 'Offer Received'),
         ('offer_accepted', 'Offer Accepted'),
         ('sold', 'Sold'),
         ('canceled', 'Canceled')

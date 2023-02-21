@@ -1,7 +1,3 @@
 <odoo>
-    <menuitem id="buildproducts_menu_root" name="Build Products">
-        <menuitem id="buildproducts_first_level_menu" name="Products">
-            <menuitem id="build_products_menu_action" action="build_products_action"/>
-        </menuitem>
-    </menuitem>
+
 </odoo>

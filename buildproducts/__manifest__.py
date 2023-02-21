@@ -11,7 +11,7 @@
 
 
 		'views/build_products_view.xml',
-		'views/buildproducts_menus.xml'
+		# 'views/buildproducts_menus.xml'
 
 
 
