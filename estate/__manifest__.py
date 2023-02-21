@@ -7,6 +7,7 @@
         
 		'views/estate_property_view.xml',
         # 'views/estate_menus.xml'
-	]
+	],
+    'application' : True
 
 }
