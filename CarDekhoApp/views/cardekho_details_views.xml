@@ -5,13 +5,10 @@
             <field name="res_model">car.dekho.property</field>
             <field name="view_mode">tree,form</field>
         </record>
-
-        <menuitem id="test_menu_root" name="Car Dekho">
-            <menuitem id="test_first_level_menu" name="Home">
-                <menuitem id="test_model_menu_action" action="test_model_action"/>
-            </menuitem>
-        </menuitem>
-
+        <menuitem id="test_menu_root" name="Car Dekho"/>
+        <menuitem id="test_first_level_menu" name="Home" parent="test_menu_root" />
+        <menuitem id="test_model_menu_action" action="test_model_action" 
+                  name="Property" parent="test_first_level_menu"/>
         <!-- List View -->
         <record id="cardekho_lost_reason_view_tree" model="ir.ui.view">
             <field name="name">car.dekho.property</field>
@@ -87,11 +84,11 @@
             <field name="model">car.dekho.property</field>
             <field name="arch" type="xml">
                 <search string="Test">
-                    <field name="car_name" />
-                    <field name="state" />
-                    <field name="engine_frequency" />
-                    <field name="car_code" />
-                    <field name="car_price" />
+                    <field name="car_name"/>
+                    <field name="state"/>
+                    <field name="engine_frequency"/>
+                    <field name="car_code"/>
+                    <field name="car_price"/>
                     <!-- group by and filter -->
                     <separator/>
                         <filter string="Fuel" 

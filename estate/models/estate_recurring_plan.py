@@ -6,6 +6,7 @@ class RecurringPlan(models.Model):
 
      name = fields.Char('Property Name',required=True)
      description = fields.Char()
+     property_type_id = fields.Char()
      postalcode = fields.Char()
      expected_price = fields.Float(required=True)
      bedrooms = fields.Integer(default='2')
@@ -13,7 +14,7 @@ class RecurringPlan(models.Model):
      garden = fields.Boolean()
      active=fields.Boolean(active=False, default=True)
      garden_orientation = fields.Selection(
-        string='Type',
+        string='Garden Orientation',
         selection=[('east', 'East'), 
                    ('west', 'West'), 
                    ('north','North'), 
@@ -23,7 +24,7 @@ class RecurringPlan(models.Model):
      selling_price = fields.Float(readonly='1', copy=False)  #for read only field readonly=1 
      living_area = fields.Integer()
      garage = fields.Boolean()
-     state = fields.Selection(string='Type',
+     state = fields.Selection(string='State',
                               selection=[('new','New'),
                                          ('offer received','Offer Received'),
                                          ('offer accepted', 'Offer Accepted'),

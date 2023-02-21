@@ -14,7 +14,7 @@ class CarDekhoProperty(models.Model):
      siting_capacity = fields.Integer(default='4')
      fuel_consumption = fields.Char()
      engine_frequency = fields.Selection(
-          string='Type',
+          string='Engine Frequency',
           selection=[('580hz', '580HZ'), 
                    ('660hz', '660HZ'), 
                    ('700hz', '700HZ'), 
@@ -22,7 +22,7 @@ class CarDekhoProperty(models.Model):
           help="Type is used to separate")
      booking_date_upto=fields.Date()
      car_price = fields.Float()
-     state = fields.Selection(string='Type',
+     state = fields.Selection(string='State',
                               selection=[('new','New'),
                                          ('old','Old'),
                                          ('modified', 'Modified')],

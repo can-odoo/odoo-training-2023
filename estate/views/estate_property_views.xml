@@ -1,21 +1,19 @@
 <?xml version="1.0"?>
     <odoo>
         <record id="test_model_action" model="ir.actions.act_window">
-            <field name="name">File</field>
+            <field name="name">RealState</field>
             <field name="res_model">estate.recurring.plan</field>
             <field name="view_mode">tree,form</field>
         </record>
-        <record id="test_model_action1" model="ir.actions.act_window">
-            <field name="name">Save</field>
-            <field name="res_model">estate.recurring.plan</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-        <menuitem id="test_menu_root" name="EState">
-            <menuitem id="test_first_level_menu" name="Home">
-                <menuitem id="test_model_menu_action" action="test_model_action"/>
-                <menuitem id="test_model_menu_action1" action="test_model_action1"/>
-            </menuitem>
-        </menuitem>
+        <menuitem id="test_menu_root" name="EState"/>
+        <menuitem id="test_first_level_menu" name="Home" parent="test_menu_root"/>
+        <menuitem id="test_model_menu_action" action="test_model_action" 
+                  name="File" parent="test_first_level_menu"/>
+        <menuitem id="test_model_menu_action1" action="test_model_action" 
+                  name="Save" parent="test_first_level_menu"/>
+        <menuitem id="type_first_level_menu" name="Settings" parent="test_menu_root"/>
+        <menuitem id="type_model_menu_action" action="test_model_action" 
+                  name="Property Type" parent="type_first_level_menu"/>    
         <!-- List View -->
         <record id="estate_list_reason_view_tree" model="ir.ui.view">
             <field name="name">estate.recurring.plan</field>
@@ -31,7 +29,6 @@
                 </tree>
             </field>
         </record>
-
         <!-- Form View -->
         <record id="estate_from_reason_view_form" model="ir.ui.view">
             <field name="name">estate.recurring.plan</field>
@@ -43,6 +40,9 @@
                             <field name="name"/>
                         </header>
                         <group>
+                            <group>
+                                <field name="property_type_id"/>
+                            </group>
                             <group>
                                 <field name="postalcode"/>
                             </group>
@@ -81,6 +81,8 @@
                                     <group>
                                         <field name="state"/>
                                     </group>
+                                </page>                                
+                                <page string="Other Info">
                                 </page>
                             </notebook>
                         </group>
@@ -94,11 +96,12 @@
             <field name="model">estate.recurring.plan</field>
             <field name="arch" type="xml">
                 <search string="Test">
-                    <field name="name" />
+                    <field name="name"/>
+                    <field name="property_type_id"/>
                     <field name="bedrooms" />
                     <field name="facades" />
-                    <field name="postalcode" />
-                    <field name="expected_price" />
+                    <field name="postalcode"/>
+                    <field name="expected_price"/>
                     <!-- group by and filter -->
                     <separator/>
                         <filter string="State" 
@@ -106,6 +109,7 @@
                                 domain="['|',('state', '=', 'new'),('state', '=', 'offer received')]"/>
                             <group expand="1" string="Group By">
                                 <filter string="Postal Code" name="provider" context="{'group_by':'postalcode'}"/>
+                                <!-- name in filter is logical name, used for inheritance hook -->
                             </group>
                 </search>
             </field>    
