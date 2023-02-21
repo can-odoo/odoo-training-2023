@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <odoo>
 
-        <!-- menus -->
+    <!-- menus -->
     <menuitem id="estate_menu_root" name="Real Estate">
         <menuitem id="menu_estate_property" name="Property">
             <menuitem id="menu_estate_property_action" action="estate_property_action"/>
@@ -85,9 +85,9 @@
                 <field name="bedrooms" string="Bedrooms"/>
                 <field name="living_area" string="Living Area(sqm)"/>
                 <field name="facades" string="Facades"/>
-                <!--    Filter   -->
+                <!-- Filter -->
                 <filter name="available" string="Available" domain="['|',('state','=','new'),('state','=','offer_received')]"/>
-                <!-- context -->
+                <!-- Context -->
                 <filter name="groupby_price" string="Price" context="{'group_by': 'expected_price'}"/>
             </search>
         </field>
