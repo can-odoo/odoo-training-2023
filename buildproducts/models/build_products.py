@@ -4,7 +4,6 @@ class BuildProducts(models.Model):
     _name = "build.products"
     _description = "Build Products"
      
-
     name = fields.Char('Product Name' , required=True)
     description = fields.Char('Description', required=True)
     product_type = fields.Selection(selection=[('opc', 'OPC'), ('ppc', 'PPC')])
