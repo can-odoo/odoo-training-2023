@@ -36,12 +36,10 @@
             <field name="arch" type="xml">
                 <form string="Estate">
                     <sheet>
-        
-                            <h1>
-                                <field name="name" placeholder="Enter Property Name"/>
-                            </h1>
+                        <h1>
+                            <field name="name" placeholder="Enter Property Name"/>
+                        </h1>
                         <div style="height: 30px"/>
-                    
                         <group>
                             <group>
                                 <field name="postcode"/>
@@ -53,7 +51,6 @@
                             </group>
                         </group>
                         <div style="height: 30px"/>
-                    
                         <notebook>
                              <page string="Description">
                                 <group>
