@@ -109,7 +109,7 @@
                                 domain="['|',('state', '=', 'new'),('state', '=', 'offer received')]"/>
                             <group expand="1" string="Group By">
                                 <filter string="Postal Code" name="provider" context="{'group_by':'postalcode'}"/>
-                                <!-- name in filter is logical name, used for inheritance hook -->
+                                <!-- name in filter is logical name, use for inheritance hook -->
                             </group>
                 </search>
             </field>    
