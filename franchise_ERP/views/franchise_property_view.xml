@@ -70,6 +70,7 @@
 
                 <filter string="location" name="location" context = "{'group_by':'location'}"/>
                 <filter string="Firm" name="Firm" context = "{'group_by':'name'}"/>
+                <filter string="Firm" name="Firm" context = "{'group_by':'name'}"/>
                 
             </search>
         </field>
