@@ -7,6 +7,6 @@
 
 
         'views/tour_guide_views.xml',
-        'views/tour_menus.xml'
+        # 'views/tour_menus.xml'
     ]
 }

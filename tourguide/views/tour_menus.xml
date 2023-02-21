@@ -1,8 +1,3 @@
-<?xml version="1.0"?>
 <odoo>
-    <menuitem id="tour_menu_root" name="Tour Guide">
-        <menuitem id="menu_tour_guide" name="Tour">
-            <menuitem id="menu_tour_guide_action" action="tour_guide_action"/>
-        </menuitem>
-    </menuitem>
+
 </odoo>

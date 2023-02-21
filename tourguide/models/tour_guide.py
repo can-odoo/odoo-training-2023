@@ -6,7 +6,7 @@ class TourGuide(models.Model):
 
     name = fields.Char('Tour Name')
     description = fields.Char('Tour Description')
-    duration = fields.Integer('Duration')
+    duration = fields.Integer('Duration(km)')
     cost = fields.Float('cost',readonly=True)
     destination = fields.Char('Place Name')
     tour_type = fields.Selection(
