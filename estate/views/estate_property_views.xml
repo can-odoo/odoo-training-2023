@@ -1,19 +1,10 @@
 <?xml version="1.0"?>
     <odoo>
-        <record id="test_model_action" model="ir.actions.act_window">
+        <record id="estate_property_action" model="ir.actions.act_window">
             <field name="name">RealState</field>
             <field name="res_model">estate.recurring.plan</field>
             <field name="view_mode">tree,form</field>
         </record>
-        <menuitem id="test_menu_root" name="EState"/>
-        <menuitem id="test_first_level_menu" name="Home" parent="test_menu_root"/>
-        <menuitem id="test_model_menu_action" action="test_model_action" 
-                  name="File" parent="test_first_level_menu"/>
-        <menuitem id="test_model_menu_action1" action="test_model_action" 
-                  name="Save" parent="test_first_level_menu"/>
-        <menuitem id="type_first_level_menu" name="Settings" parent="test_menu_root"/>
-        <menuitem id="type_model_menu_action" action="test_model_action" 
-                  name="Property Type" parent="type_first_level_menu"/>    
         <!-- List View -->
         <record id="estate_list_reason_view_tree" model="ir.ui.view">
             <field name="name">estate.recurring.plan</field>
@@ -21,7 +12,9 @@
             <field name="arch" type="xml">
                 <tree string="Tests">
                     <field name="name"/>
+                    <field name="tag_ids" widget="many2many_tags"/>
                     <field name="postalcode"/>
+                    <field name="property_type_id"/>
                     <field name="state"/>
                     <field name="expected_price"/>
                     <field name="selling_price"/>
@@ -29,19 +22,23 @@
                 </tree>
             </field>
         </record>
-        <!-- Form View Here -->
+
+        <!-- Form View -->
         <record id="estate_from_reason_view_form" model="ir.ui.view">
             <field name="name">estate.recurring.plan</field>
             <field name="model">estate.recurring.plan</field>
             <field name="arch" type="xml">
                 <form string="Test">
                     <sheet>
-                        <header>
-                            <field name="name"/>
-                        </header>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Name"/>
+                            </h1>
+                            <field name="tag_ids" widget="many2many_tags" placeholder="Select Tag"/>
+                        </div>
                         <group>
                             <group>
-                                <field name="property_type_id"/>
+                                <field name="property_type_id" options="{'no_create': True, 'no_edit': True}"/>
                             </group>
                             <group>
                                 <field name="postalcode"/>
@@ -58,7 +55,7 @@
                             <notebook>
                                 <page string="Description">
                                     <group>
-                                        <field name="description"/>
+                                        <field name="description" placeholder="Description Here"/>
                                     </group>
                                     <group>
                                         <field name="bedrooms"/>
@@ -81,8 +78,17 @@
                                     <group>
                                         <field name="state"/>
                                     </group>
-                                </page>                                
+                                </page>
+                                <page string="Offers">
+                                    <field name="offer_ids"/>
+                                </page>
                                 <page string="Other Info">
+                                    <group>
+                                        <group>
+                                            <field name="user_id"/>
+                                            <field name="buyer_id"/>
+                                        </group>
+                                    </group>
                                 </page>
                             </notebook>
                         </group>

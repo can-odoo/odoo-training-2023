@@ -6,7 +6,8 @@ class RecurringPlan(models.Model):
 
      name = fields.Char('Property Name',required=True)
      description = fields.Char()
-     property_type_id = fields.Char()
+     # many2one mapping
+     property_type_id = fields.Many2one("estate.property.type", string="Property Type")
      postalcode = fields.Char()
      expected_price = fields.Float(required=True)
      bedrooms = fields.Integer(default='2')
@@ -33,3 +34,7 @@ class RecurringPlan(models.Model):
                               required=True,
                               copy=False,
                               default="new")
+     user_id = fields.Many2one("res.users", string="Salesman", default=lambda self: self.env.user)
+     buyer_id = fields.Many2one("res.partner", string="Buyer", readonly=True, copy=False)
+     tag_ids = fields.Many2many("estate.property.tag", string="Tags")
+     offer_ids = fields.One2many("estate.property.offer", "property_id", string="Offers")

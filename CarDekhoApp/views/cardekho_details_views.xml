@@ -6,8 +6,8 @@
             <field name="view_mode">tree,form</field>
         </record>
         <menuitem id="test_menu_root" name="Car Dekho"/>
-        <menuitem id="test_first_level_menu" name="Home" parent="test_menu_root" />
-        <menuitem id="test_model_menu_action" action="test_model_action" 
+        <menuitem id="test_first_level_menu" name="Advertisements" parent="test_menu_root" />
+        <menuitem id="test_model_menu_action" action="test_model_action"
                   name="Property" parent="test_first_level_menu"/>
         <!-- List View -->
         <record id="cardekho_lost_reason_view_tree" model="ir.ui.view">
@@ -77,7 +77,6 @@
                 </form>
             </field>
         </record>
-
         <!-- For Search Here-->
         <record id="cardekho_search_reason_view_form" model="ir.ui.view">
             <field name="name">car.dekho.property</field>
