@@ -34,7 +34,6 @@
                                 <field name="franchise_owner"/>
                             </group>
                         </group>
-
                         <notebook>
                             <page string="Description">
                                 <group>
@@ -70,8 +69,7 @@
 
                 <filter string="location" name="location" context = "{'group_by':'location'}"/>
                 <filter string="Firm" name="Firm" context = "{'group_by':'name'}"/>
-                <filter string="franchise_id" name="franchise_id" context = "{'group_by':'franchise_id'}"/>
-                
+                <filter string="franchise_id" name="franchise_id" context = "{'group_by':'franchise_id'}"/>      
             </search>
         </field>
     </record>

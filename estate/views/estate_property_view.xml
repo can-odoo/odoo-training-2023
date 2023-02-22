@@ -14,7 +14,7 @@
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
             <search string="search property">
-                
+
                 <!-- Search -->
                 <field name="name"></field>
                 <field name="postcode"></field>
@@ -22,6 +22,7 @@
                 <field name="bedrooms"></field>
                 <field name="living_area"></field>
                 <field name="facades"></field>
+                <field name="property_type_id" />
 
                 <!-- Filter -->
                 <filter string="Available" name="state"
@@ -42,6 +43,7 @@
         <field name="arch" type="xml">
             <tree string="Channel">
                 <field name="name" />
+                <field name="property_type_id" />
                 <field name="postcode" />
                 <field name="bedrooms" />
                 <field name="living_area" />
@@ -62,10 +64,12 @@
                     <h1>
                         <field name="name" />
                     </h1>
+                    <field name="tag_ids" widget="many2many_tags" />
                     <group>
                         <group>
                             <field name="postcode" />
                             <field name="expected_price" />
+                            <field name="property_type_id" />
                         </group>
                         <group>
                             <field name="date_availability" />
@@ -85,6 +89,15 @@
                                 <field name="garden_orientation" />
                             </group>
                         </page>
+                        <page string="Other info">
+                            <group>
+                                <field name="salesman" />
+                                <field name="buyer" />
+                            </group>
+                        </page>
+                        <page string="Offers">
+                            <field name="offer_ids" />
+                        </page>
                     </notebook>
                 </sheet>
             </form>
@@ -93,15 +106,19 @@
 
     <!-- Records -->
     <record id="estate_property_action" model="ir.actions.act_window">
-        <field name="name">Estate Property Action</field>
+        <field name="name">Estate Property </field>
         <field name="res_model">estate.property</field>
         <field name="view_mode">tree,form</field>
     </record>
 
     <!-- Menu -->
+    <!-- Root -->
     <menuitem id="estate_menu_root" name="Real Estate" />
-    <menuitem id="estate_first_level_menu" name="Advertisement" parent="estate_menu_root" />
+    <!-- Advertisement menu-->
+    <menuitem id="first_level_menu_advertisement" name="Advertisement" parent="estate_menu_root" />
     <menuitem id="estate_model_menu_action" action="estate_property_action" name="Property"
-        parent="estate_first_level_menu" />
+        parent="first_level_menu_advertisement" />
+    <!-- Setting menu -->
+    <menuitem id="first_level_menu_setting" name="Settings" parent="estate_menu_root" />
 
 </odoo>
