@@ -1,18 +1,16 @@
 <?xml version="1.0"?>
 <odoo>
 
-    <!-- menus -->
-    <menuitem id="estate_menu_root" name="Real Estate">
-        <menuitem id="menu_estate_property" name="Property">
-            <menuitem id="menu_estate_property_action" action="estate_property_action"/>
-        </menuitem>
-    </menuitem>
-
     <record id="estate_property_action" model="ir.actions.act_window">
         <field name="name">Estate Properties</field>
         <field name="res_model">estate.property</field>
         <field name="view_mode">tree,form</field>
     </record>
+
+    <!-- menus -->
+    <menuitem id="estate_menu_root" name="Real Estate"/>
+    <menuitem id="menu_estate_property" name="Property" parent="estate_menu_root"/>
+    <menuitem id="menu_estate_property_action" action="estate_property_action" parent="menu_estate_property"/>
 
     <!-- tree view record -->
     <record id="estate_property_list_view" model="ir.ui.view">
@@ -38,17 +36,19 @@
         <field name="arch" type="xml">
             <form string="Estate">
                 <sheet>
-                     <h1>
+                    <h1>
                         <field name="name" placeholder="Enter Property Name"/>
                     </h1>
+                        <field name="tax_ids" widget="many2many_tags"/>
                     <div style="height: 30px"/>
                     <group>
                         <group>
+                            <field name="property_type_id"/>
                             <field name="postcode"/>
-                            <field name="expected_price"/>
+                            <field name="date_availability"/>
                         </group>
                         <group>
-                            <field name="date_availability"/>
+                            <field name="expected_price"/>
                             <field name="selling_price"/>
                         </group>
                     </group>
@@ -65,6 +65,15 @@
                                 <field name="garden_area"/>
                                 <field name="garden_orientation"/>
                                 <field name="active"/>
+                            </group>
+                        </page>
+                        <page string="Offers">
+                            <field name="offer_ids"/>
+                        </page>
+                        <page string="Other Info">
+                            <group>
+                                <field name="user_id"/>
+                                <field name="buyer_id"/>
                             </group>
                         </page>
                     </notebook>
