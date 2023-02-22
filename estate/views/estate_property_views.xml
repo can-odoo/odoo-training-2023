@@ -10,7 +10,7 @@
 
     <menuitem id="estate_menu_root" name="Estate"/>
     <menuitem id="estate_first_level_menu" name="Properties" parent="estate_menu_root"/>
-    <menuitem id="estate_property_menu_action" action="estate_property_action" parent="estate_first_level_menu" />
+    <menuitem id="estate_property_menu_action" action="estate_property_action" parent="estate_first_level_menu"/>
     
     <!-- List View -->
     <record id="view_property_list" model="ir.ui.view">
@@ -39,9 +39,12 @@
                         <h1>
                             <field name="name" placeholder="Enter Property Name"/>
                         </h1>
-                        <div style="height: 30px"/>
+                        <div style="height: 15px"/>
+                        <field name="tag_ids" widget="many2many_tags"/>
+                        <div style="height: 15px"/>
                         <group>
                             <group>
+                                <field name="property_type_id"/>
                                 <field name="postcode"/>
                                 <field name="date_availability"/>
                             </group>
@@ -62,6 +65,16 @@
                                     <field name="garden"/>
                                     <field name="garden_area"/>
                                     <field name="garden_orientation"/>
+                                    <field name="active"/>
+                                </group>
+                            </page>
+                            <page string="Offers">
+                                <field name="offer_ids"/>
+                            </page>
+                            <page string="Other Info">
+                                <group>
+                                    <field name="salesperson_id"/>
+                                    <field name="buyer_id"/>
                                 </group>
                             </page>
                         </notebook>

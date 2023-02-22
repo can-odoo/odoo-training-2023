@@ -11,6 +11,7 @@ class EstateProperty(models.Model):
     expected_price = fields.Float('Expected Price')
     selling_price = fields.Float('Selling Price' , readonly=True , copy=False)
     bedrooms = fields.Integer('No. of Bedrooms' , default=2)
+    property_type_id = fields.Many2one('estate.property.type' , string='Property Types')
     living_area = fields.Integer('Living Area (sqm)' , required=True)
     facades = fields.Integer('Facades' , required=True)
     garage = fields.Boolean('Garage')
@@ -25,3 +26,8 @@ class EstateProperty(models.Model):
         ('canceled', 'Canceled')
     ], string='State', default='new')
     active = fields.Boolean(string='Active' , default=True)
+    buyer_id = fields.Many2one('res.partner', string='Buyer', copy=False)
+    salesperson_id = fields.Many2one('res.users', string='Salesperson', default=lambda self: self.env.user)
+    tag_ids = fields.Many2many('estate.property.tag' , string='Property Tags')
+    offer_ids = fields.One2many('estate.property.offer', 'property_id', string='Offers')
+    
