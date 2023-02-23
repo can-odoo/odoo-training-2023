@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <odoo>
+        <!-- Top menu item -->
+        <menuitem id="cardekho_menu_root" name="Car Dekho">
+            <menuitem id="cardekho_advertisement_menu" name="Advertisements" sequence="5">
+                <menuitem id="cardekho_menu_action" action="cardekho_action" sequence="5"/>
+            </menuitem>
+            <menuitem id="cardekho_settings_menu" name="Settings" sequence="10">
+                <menuitem id="cardekho_type_menu_action" action="cardekho_type_action" sequence="5"/>
+                <menuitem id="cardekho_tag_menu_action" action="cardekho_tag_action" sequence="10"/>
+            </menuitem>
+        </menuitem>
+    </odoo>
