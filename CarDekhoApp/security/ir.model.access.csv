@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_Car_Dekho_Property,access_Car_Dekho_Property,model_car_dekho_property,base.group_user,1,1,1,1
+access_Car_Dekho_Property,access_car_dekho_property,model_car_dekho_property,base.group_user,1,1,1,1
+access_cardekho_property_type,access_cardekho_property_type,model_cardekho_property_type,base.group_user,1,1,1,1
+access_cardekho_property_tag,access_cardekho_property_tag,model_cardekho_property_tag,base.group_user,1,1,1,1
+access_cardekho_property_offfer,access_cardekho_property_offer,model_cardekho_property_offer,base.group_user,1,1,1,1
