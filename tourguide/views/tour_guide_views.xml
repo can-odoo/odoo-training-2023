@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <odoo>
 
-    <!-- tour menus -->
-    <menuitem id="tour_menu_root" name="Tour Guide">
-        <menuitem id="menu_tour_guide" name="Tour">
-            <menuitem id="menu_tour_guide_action" action="tour_guide_action"/>
-        </menuitem>
-    </menuitem>
-    
     <record id="tour_guide_action" model="ir.actions.act_window">
         <field name="name">Tours</field>
         <field name="res_model">tour.guide</field>
         <field name="view_mode">tree,form</field>
     </record>
+
+     <!-- tour menus -->
+    <menuitem id="tour_menu_root" name="Tour Guide">
+        <menuitem id="menu_tour_guide" name="Tour">
+            <menuitem id="menu_tour_guide_action" action="tour_guide_action"/>
+        </menuitem>
+    </menuitem>
 
     <!-- tree view -->
     <record id="tour_guide_list_view" model="ir.ui.view">
@@ -21,8 +21,6 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
-                <field name="duration"/>
-                <field name="cost"/>
                 <field name="destination"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
@@ -40,11 +38,12 @@
                     <h1>
                         <field name="name" placeholder="Enter Tour Name "/>
                     </h1>
+                    <field name="tag_ids" widget="many2many_tags"/>
                     <div style="height:20px"/>
                     <group>
                         <group>
                             <field name="destination"/>
-                            <field name="cost"/>
+                            <field name="active"/>
                         </group>
                         <group>
                             <field name="start_date"/>
@@ -56,9 +55,11 @@
                         <page string="Description">
                             <group>
                                 <field name="description"/>
-                                <field name="duration"/>
                                 <field name="tour_type"/>
                             </group>
+                        </page>
+                        <page string="Packages">
+                            <field name="package_ids"/>
                         </page>
                     </notebook>
                 </sheet>
@@ -73,8 +74,8 @@
         <field name="arch" type="xml">
             <search string="Tour">
                 <field name="name" string="Tour Name"/>
-                <field name="duration" string="Duration(km)"/>
-                <field name="cost" string="Cost"/>
+                <!-- <field name="duration" string="Duration(km)"/>
+                <field name="cost" string="Cost"/> -->
                 <field name="destination" string="Destination"/>
                 <!-- context -->
                 <filter name="start_date" string="Start Date" context="{'group_by':'start_date'}"/>
