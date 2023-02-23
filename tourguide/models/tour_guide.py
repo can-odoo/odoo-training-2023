@@ -6,12 +6,14 @@ class TourGuide(models.Model):
 
     name = fields.Char('Tour Name')
     description = fields.Char('Tour Description')
-    duration = fields.Integer('Duration(km)')
-    cost = fields.Float('cost',readonly=True)
+    # duration = fields.Integer('Duration(km)')
+    # cost = fields.Float('cost',readonly=True)
     destination = fields.Char('Place Name')
     tour_type = fields.Selection(
         selection = [('group', 'Group'), ('solo', 'Solo'), ('family', 'Family')]
     )
     start_date = fields.Date('Start Date')
     end_date = fields.Date('End Date')
-    
+    active = fields.Boolean(string="Active",default=True)
+    package_ids = fields.One2many('tour.packages','tour_ids')
+    tag_ids = fields.Many2many('tour.tag') 
