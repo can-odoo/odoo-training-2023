@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
     <odoo>
         <record id="cardekho_type_action" model="ir.actions.act_window">
-            <field name="name">Car Type</field>
+            <field name="name">Car Types</field>
             <field name="res_model">cardekho.property.type</field>
             <field name="view_mode">tree,form</field>
         </record>
