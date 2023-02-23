@@ -1,1 +1,4 @@
-from . import franchise_property
+from . import franchise_store_property
+from . import franchise_product
+from . import franchise_product_type
+from . import franchise_product_stock
