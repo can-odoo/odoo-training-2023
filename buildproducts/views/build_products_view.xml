@@ -33,9 +33,12 @@
         <field name="arch" type="xml">
             <form string="Build Product">
                 <sheet>
+                    <h1><field name="name" placeholder="Enter Product name"/></h1>
+                    <div style="height: 15px"/>
+                    <field name="tag_ids" widget="many2many_tags" placeholder="Tags"/>
+                    <div style="height: 15px"/>
                     <group>
                         <group>
-                            <h1><field name="name"/></h1>
                             <field name="product_price"/>
                         </group>
                         <group>
@@ -49,6 +52,9 @@
                                 <field name="description"/>
                                 <field name="product_quantity"/>
                             </group>
+                        </page>
+                        <page string="Orders">
+                            <field name="order_ids"/>
                         </page>
                     </notebook>
                 </sheet>
