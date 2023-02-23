@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<odoo>
+
+     <record id="tour_tag_action" model="ir.actions.act_window">
+        <field name="name">Tour Tags</field>
+        <field name="res_model">tour.tag</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+     <!-- tour tag menus -->
+        <menuitem id="menu_tour_tag" parent="tour_menu_root" name="Tags"/>
+        <menuitem id="menu_tour_tag_action" parent="menu_tour_tag" action="tour_tag_action"/>
+
+</odoo>
