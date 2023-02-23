@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!-- Menu -->
+    <record id="build_products_tag_action" model="ir.actions.act_window">
+        <field name="name">Property Tags</field>
+        <field name="res_model">build.products.tag</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="build_products_tag_root" name="Settings" parent="buildproducts_menu_root"/>
+    <menuitem id="build_products_tag_menu" name="Product Tags" action="build_products_tag_action" parent="build_products_tag_root"/>
+
+</odoo>
