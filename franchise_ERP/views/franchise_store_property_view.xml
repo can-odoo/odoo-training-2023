@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <!-- List -->
+    <record id="franchise_store_property_tree" model="ir.ui.view">
+        <field name="name">franchise.store.property.tree</field>
+        <field name="model">franchise.store.property</field>
+        <field name="arch" type="xml">
+            <tree string="Channel">
+                <field name="name" />
+                <field name="store_manager" />
+                <field name="location" />
+                <field name="available" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form -->
+    <record id="franchise_store_property_form" model="ir.ui.view">
+        <field name="name">franchise.store.property.form</field>
+        <field name="model">franchise.store.property</field>
+        <field name="arch" type="xml">
+            <form string="Store Property Form">
+                <sheet>
+                    <h1 style="margin-bottom:30px">
+                        <field name="name" placeholder="Store Id/Name"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="franchise_owner" />
+                        </group>
+                        <group>
+                            <field name="store_manager" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Descirption">
+                            <group>
+                                <group>
+                                    <field name="location" />
+                                    <field name="no_of_product" />
+                                    <field name="opening_date" />
+                                    <field name="sale" />
+                                    <field name="revanue" />
+                                    <field name="no_of_employee" />
+                                    <field name="available" />
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Manger Info">
+                            <group>
+                                <field name="phone_no" />
+                            </group>
+                        </page>
+                        <page string="Product">
+                            <field name="product_ids" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search -->
+    <!-- <record id="franchise_property_search" model="ir.ui.view">
+        <field name="name">franchise.property.search</field>
+        <field name="model">franchise.property</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="franchise_id"/>
+                <field name="franchise_owner"/>
+                <field name="location"/>
+
+                <filter string="Available Now" name="active" domain="[('active','=',1)]"/>
+                <separator></separator>
+                <filter string = "India" name="location" domain="[('location','=','India')]"/>
+
+                <filter string="location" name="location" context = "{'group_by':'location'}"/>
+                <filter string="Firm" name="Firm" context = "{'group_by':'name'}"/>
+                <filter string="franchise_id" name="franchise_id" context = "{'group_by':'franchise_id'}"/>      
+            </search>
+        </field>
+    </record> -->
+
+    <!-- Action -->
+    <record id="franchise_store_property_action" model="ir.actions.act_window">
+        <field name="name">Franchise </field>
+        <field name="res_model">franchise.store.property</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+</odoo>

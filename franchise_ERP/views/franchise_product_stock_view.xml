@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo> 
+    <!-- List -->
+    <record id="franchise_product_stock_tree" model="ir.ui.view">
+        <field name="name">franchise.product.stock.tree</field>
+        <field name="model">franchise.product.stock</field>
+        <field name="arch" type="xml">
+            <tree string="Channel">
+                <field name="product_id" />
+                <field name="quantity" />
+                <field name="status" />
+            </tree>
+        </field>
+    </record>
+
+</odoo>
