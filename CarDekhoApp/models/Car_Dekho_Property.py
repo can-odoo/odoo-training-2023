@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import fields, models,api
 
 class CarDekhoProperty(models.Model):
      _name="car.dekho.property"
@@ -36,3 +36,9 @@ class CarDekhoProperty(models.Model):
      buyer_id = fields.Many2one("res.partner", string="Buyer", readonly=True, copy=False)
      tag_ids = fields.Many2many("cardekho.property.tag", string="Tags")
      offer_ids = fields.One2many("cardekho.property.offer", "car_id", string="Offers")
+     best_price = fields.Float("Best Offer", compute='_best_price_offer')
+
+     @api.depends('offer_ids.price')
+     def _best_price_offer(self):
+          for offer in self:
+               offer.best_price = max(offer.offer_ids.mapped('price')) if offer.offer_ids else 0.0
