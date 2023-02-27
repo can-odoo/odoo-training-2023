@@ -52,6 +52,9 @@
                             <group>
                                 <field name="car_price"/>
                             </group>
+                            <group>
+                                <field name="best_price"/>
+                            </group>
                             <notebook>
                                 <page string="Description">
                                     <group>
