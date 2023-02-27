@@ -17,3 +17,5 @@ class TourGuide(models.Model):
     active = fields.Boolean(string="Active",default=True)
     package_ids = fields.One2many('tour.packages','tour_ids')
     tag_ids = fields.Many2many('tour.tag') 
+
+    #  this is for check
