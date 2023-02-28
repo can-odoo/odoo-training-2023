@@ -15,12 +15,21 @@ class EstatePropertyOffer(models.Model):
 
     @api.depends("create_date", "validity")
     def _compute_date_deadline(self):
+        # for data in self:
+        #     if data.create_date:
+        #         data.date_deadline = fields.Date.add(data.create_date.date(),days=data.validity)
+        #     else:
+        #         data.date_deadline = fields.Date.add(fields.Date.today(),days=data.validity)
         for data in self:
             date = data.create_date.date() if data.create_date else fields.Date.today()
             data.date_deadline = date + timedelta(days = data.validity)
     
     def _inverse_date_deadline(self):
         for data in self:
+            # if data.create_date:
+            #     data.validity = (data.date_deadline - data.create_date.date()).days
+            # else:
+            #     data.validity = (data.date_deadline - fields.Date.today()).days
             date = data.create_date.date() if data.create_date else fields.Date.today()
             data.validity = (data.date_deadline - date).days
             
