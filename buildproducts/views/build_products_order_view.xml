@@ -9,6 +9,7 @@
             <tree>
                 <field name="buyer_id"/>
                 <field name="qty_ordered"/>
+                <field name="total_amount"/>
                 <field name="status"/>
             </tree>
         </field>
@@ -26,6 +27,7 @@
                             <field name="buyer_id"/>
                             <field name="qty_ordered"/>
                             <field name="status"/>
+                            <field name="total_amount"/>
                         </group>
                         <group>
                             <field name="order_date"/>
