@@ -8,6 +8,8 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
+                <field name="tour_start"/>
+                <field name="tour_end"/>
                 <field name="duration"/>
                 <field name="price"/>
             </tree>
@@ -24,10 +26,12 @@
                     <group>
                         <group>
                             <field name="name"/>
+                            <field name="tour_start"/>
                             <field name="duration"/>
                         </group>
                         <group>
                             <field name="price"/>
+                            <field name="tour_end"/>
                             <field name="guide_id"/>
                         </group>
                     </group>
