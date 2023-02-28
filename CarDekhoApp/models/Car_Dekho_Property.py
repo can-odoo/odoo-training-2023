@@ -44,8 +44,8 @@ class CarDekhoProperty(models.Model):
      @api.depends('offer_ids.price')
      def _best_price_offer(self):
           for offer in self:
-               offer.best_price = max(offer.offer_ids.mapped('price')) if offer.offer_ids else 0.0               
-     
+               offer.best_price = max(offer.offer_ids.mapped('price')) if offer.offer_ids else 0.0                    
+
      @api.depends('height','width')
      def _total_area(self):
           for i in self:

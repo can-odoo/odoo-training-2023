@@ -67,10 +67,19 @@
                                         <field name="color"/>
                                     </group>
                                     <group>
+                                        <field name="height"/>
+                                    </group>
+                                    <group>
+                                        <field name="width"/>
+                                    </group>
+                                    <group>
                                         <field name="siting_capacity"/>
                                     </group>
                                     <group>
                                         <field name="fuel_consumption"/>
+                                    </group>
+                                    <group>
+                                        <field name="t_area"/>
                                     </group>
                                     <group>
                                         <field name="engine_frequency"/>
