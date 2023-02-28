@@ -87,6 +87,9 @@
                                     <group>
                                         <field name="state"/>
                                     </group>
+                                    <group>
+                                        <field name="weight"/>
+                                    </group>
                                 </page>
                                 <page string="Car Offers">
                                     <field name="offer_ids"/>
