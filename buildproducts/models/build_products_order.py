@@ -1,4 +1,5 @@
 from odoo import models, fields
+from odoo import api
 
 class BuildProductsOrder(models.Model):
     _name = 'build.products.order'
@@ -22,3 +23,17 @@ class BuildProductsOrder(models.Model):
         ('refused' , 'Refused')
     ], string='Status', required=True)
     product_id = fields.Many2one('build.products', string='Product', required=True)
+    total_amount = fields.Float(compute='_compute_total_amount' , inverse='_inverse_total_amount' , string='Total Amount' , store=True)
+
+    @api.depends('qty_ordered', 'product_id.product_price')
+    def _compute_total_amount(self):
+        for order in self:
+            order.total_amount = order.qty_ordered * order.product_id.product_price
+
+    def _inverse_total_amount(self):
+        for order in self:
+            order.qty_ordered = order.total_amount / order.product_id.product_price
+
+    
+
+    
