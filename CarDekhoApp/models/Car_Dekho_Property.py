@@ -37,8 +37,30 @@ class CarDekhoProperty(models.Model):
      tag_ids = fields.Many2many("cardekho.property.tag", string="Tags")
      offer_ids = fields.One2many("cardekho.property.offer", "car_id", string="Offers")
      best_price = fields.Float("Best Offer", compute='_best_price_offer')
-
+     height = fields.Float("Height (M)")
+     width = fields.Float("Width (W)")
+     t_area = fields.Float("Area (Sqm)", compute='_total_area')
+     
      @api.depends('offer_ids.price')
      def _best_price_offer(self):
           for offer in self:
-               offer.best_price = max(offer.offer_ids.mapped('price')) if offer.offer_ids else 0.0
+               offer.best_price = max(offer.offer_ids.mapped('price')) if offer.offer_ids else 0.0               
+     
+     @api.depends('height','width')
+     def _total_area(self):
+          for i in self:
+               i.t_area = i.height * i.width                         
+
+     @api.onchange('t_area')
+     def _change_state_area(self):
+          if self.t_area > 40.00:
+               self.state='modified'
+          else : 
+               self.state=False
+
+     @api.onchange('siting_capacity')
+     def _change_engine_freq(self):
+          if self.siting_capacity >=6:
+               self.engine_frequency = 'above 700hz'
+          else:
+               self.engine_frequency = False
