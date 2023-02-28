@@ -40,6 +40,7 @@ class CarDekhoProperty(models.Model):
      height = fields.Float("Height (M)")
      width = fields.Float("Width (W)")
      t_area = fields.Float("Area (Sqm)", compute='_total_area')
+     weight=fields.Integer("Weight (KG)", compute='_approx_weight')
      
      @api.depends('offer_ids.price')
      def _best_price_offer(self):
@@ -64,3 +65,9 @@ class CarDekhoProperty(models.Model):
                self.engine_frequency = 'above 700hz'
           else:
                self.engine_frequency = False
+     @api.depends('siting_capacity')
+     def _approx_weight(self):
+          if self.siting_capacity > 5:
+               self.weight = 100
+          else :
+               self.weight=0     
