@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import fields, models, api
 
 class TourGuide(models.Model):
     _name = 'tour.guide'
@@ -15,7 +15,24 @@ class TourGuide(models.Model):
     start_date = fields.Date('Start Date')
     end_date = fields.Date('End Date')
     active = fields.Boolean(string="Active",default=True)
+    min_price = fields.Float("Min_Price", compute="_check_min_price")
+    max_price = fields.Float("Max_Price", compute="_check_max_price")
     package_ids = fields.One2many('tour.packages','tour_ids')
-    tag_ids = fields.Many2many('tour.tag') 
+    tag_ids = fields.Many2many('tour.tag')
 
-    #  this is for check
+    @api.depends('package_ids.price')
+    def _check_min_price(self):
+        for l in self:
+            if self.package_ids:
+                self.min_price = min(self.package_ids.mapped('price'))
+            else:
+                self.min_price = 0
+    
+    def _check_max_price(self):
+        for l in self:
+            if self.package_ids:
+                self.max_price = max(self.package_ids.mapped('price'))
+            else:
+                self.max_price = 0
+
+                
