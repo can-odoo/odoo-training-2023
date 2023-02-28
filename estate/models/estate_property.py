@@ -42,6 +42,7 @@ class EstateProperty(models.Model):
 		for data in self:
 			data.total_area = data.living_area + data.garden_area
 
+	# for find maximum best_price
 	# @api.depends("offer_ids.price")
 	# def _check_best_price(self):
 	# 	for data in self:
@@ -59,7 +60,6 @@ class EstateProperty(models.Model):
 			else:
 				data.best_price = 0
 	
-
 	@api.onchange("garden")
 	def _onchange_garden(self):
 		if self.garden:
