@@ -44,10 +44,12 @@
                         <group>
                             <field name="destination"/>
                             <field name="active"/>
+                            <field name="min_price"/>
                         </group>
                         <group>
                             <field name="start_date"/>
                             <field name="end_date"/>
+                            <field name="max_price"/>
                         </group>
                     </group>
                     <div style="height:20px"/>
