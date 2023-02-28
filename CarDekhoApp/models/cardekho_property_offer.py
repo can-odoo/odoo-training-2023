@@ -29,3 +29,5 @@ class carOffers(models.Model):
         for i in self:
             date = i.create_date.date() if i.create_date else fields.Date.today()
             i.validity = (i.date_deadline - date).days
+
+            
