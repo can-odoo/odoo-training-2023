@@ -8,10 +8,13 @@
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
-                <field name="tour_start"/>
-                <field name="tour_end"/>
+                <!-- <field name="tour_start"/>
+                <field name="tour_end"/> -->
                 <field name="duration"/>
                 <field name="price"/>
+                 <button name="to_action_available" type="object" icon="fa-check-circle"/>
+                <button name="to_action_unavailable" type="object" icon="fa-times-circle"/>
+                <field name="status1"/>
             </tree>
         </field>
     </record>
