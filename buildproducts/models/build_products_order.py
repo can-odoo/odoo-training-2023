@@ -12,7 +12,7 @@ class BuildProductsOrder(models.Model):
     delivery_date = fields.Date('Expected Delivery Date' , default=fields.Date.add(fields.Date.today(), days=2))
     state = fields.Selection([
         ('new', 'New'),
-        ('oder_accepted', 'Order Accepted'),
+        ('order_accepted', 'Order Accepted'),
         ('in_progress', 'In Progress'),
         ('in_delivery', 'In Delivery'),
         ('delivered', 'Delivered'),
@@ -33,6 +33,15 @@ class BuildProductsOrder(models.Model):
     def _inverse_total_amount(self):
         for order in self:
             order.qty_ordered = order.total_amount / order.product_id.product_price
+
+    def action_confirmed(self):
+        for order in self:
+            order.state = 'order_accepted'
+
+    def action_delivered(self):
+        for order in self:
+            order.state = 'delivered'
+            
 
     
 
