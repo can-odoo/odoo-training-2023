@@ -15,7 +15,6 @@ class EstatePropertyOffer(models.Model):
     @api.depends('validity','create_date')
     def _compute_deadline(self):
         for record in self:
-            print(record.create_date)
             if record.create_date:
                 record.deadline = fields.Date.add(record.create_date.date(),days=record.validity)
             else :
@@ -28,3 +27,14 @@ class EstatePropertyOffer(models.Model):
             else :
                 record.validity = (record.deadline-fields.date.today()).days
                             
+    def action_accept(self):
+        for record in self:
+            record.status = "accepted"
+            record.property_id.selling_price = record.price
+            record.property_id.buyer = record.partner_id
+
+    def action_refused(self):
+        for record in self:
+            record.status = "refused"
+            record.property_id.selling_price = 0
+            record.property_id.buyer = 0
