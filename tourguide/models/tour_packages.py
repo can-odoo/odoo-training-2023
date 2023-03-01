@@ -13,6 +13,9 @@ class TourPackages(models.Model):
     tour_ids = fields.Many2one('tour.guide', required=True)
     guide_id = fields.Many2one('res.users', string='TourGuide', default=lambda self: self.env.user)
     desc = fields.Text('Description')
+    status1 = fields.Selection(
+        selection = [('available','Available'), ('unavailable','Unavailable')]
+    )
 
     @api.depends('tour_start', 'tour_end')
     def _total_days(self):
@@ -26,3 +29,13 @@ class TourPackages(models.Model):
         for data in self:
             if data.tour_start and data.duration:
                 data.tour_end = data.tour_start + timedelta(days=data.duration)
+    
+    def to_action_available(self):
+        for data in self:
+            data.status1 = 'available'
+        return True
+    
+    def to_action_unavailable(self):
+        for data in self:
+            data.status1 = 'unavailable'
+        return True
