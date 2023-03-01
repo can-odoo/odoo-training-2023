@@ -41,7 +41,8 @@
                                     <field name="no_of_product" />
                                     <field name="opening_date" />
                                     <field name="sale" />
-                                    <field name="revanue" />
+                                    <field name="profit_margin" />
+                                    <field name="net_revanue" />
                                     <field name="no_of_employee" />
                                     <field name="available" />
                                 </group>
