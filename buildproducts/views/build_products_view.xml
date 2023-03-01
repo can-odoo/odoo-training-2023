@@ -32,6 +32,10 @@
         <field name="model">build.products</field>
         <field name="arch" type="xml">
             <form string="Build Product">
+                <header>
+                    <button name="action_opc" type="object" string="OPC"/>
+                    <button name="action_ppc" type="object" string="PPC"/>
+                </header>
                 <sheet>
                     <h1><field name="name" placeholder="Enter Product name"/></h1>
                     <div style="height: 15px"/>
