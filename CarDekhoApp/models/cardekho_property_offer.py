@@ -30,4 +30,10 @@ class carOffers(models.Model):
             date = i.create_date.date() if i.create_date else fields.Date.today()
             i.validity = (i.date_deadline - date).days
 
-            
+    def accept_state(self):
+        self.write({'state':'accepted'})
+        return self.mapped("car_id").write({'buyer_id':self.partner_id.id,
+                                            'car_price':self.price
+                                          })
+    def refused_state(self):
+        self.write({'state':'refused'})          

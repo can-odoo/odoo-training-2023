@@ -1,4 +1,5 @@
 from odoo import fields, models,api
+from odoo.exceptions import UserError
 
 class CarDekhoProperty(models.Model):
      _name="car.dekho.property"
@@ -26,8 +27,9 @@ class CarDekhoProperty(models.Model):
      state = fields.Selection(string='State',
                               selection=[('new','New'),
                                          ('old','Old'),
-                                         ('modified', 'Modified')],
-                              help="Type is used to seprate",
+                                         ('modified', 'Modified'),
+                                         ('sold','Sold'),
+                                         ('cancel','Cancel')],
                               required=True,
                               copy=False,
                               default="new")
@@ -70,4 +72,14 @@ class CarDekhoProperty(models.Model):
           if self.siting_capacity > 5:
                self.weight = 100
           else :
-               self.weight=0     
+               self.weight=0
+
+     def car_sold(self):
+          if self.state == 'cancel':
+               raise UserError("Cancled car not for sale")
+          return self.write({'state':'sold'})
+
+     def car_cancel(self):
+          if self.state == 'sold':
+               raise UserError("sold car not be cancel")
+          return self.write({'state':'cancel'})               
