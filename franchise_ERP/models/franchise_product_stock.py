@@ -7,7 +7,7 @@ class FranchiseProductStock(models.Model):
     product_id = fields.Many2one('franchise.product')
     franchise_id = fields.Many2one('franchise.store.property')
     quantity = fields.Integer()
-    status = fields.Selection(selection=[('in_stock','In stock'),('out of stock','Out of Stock'),('ordered', 'Ordered')])
+    status = fields.Selection(selection=[('in_stock','In stock'),('out of stock','Out of Stock'),('to_order','To order'),('ordered', 'Ordered')])
     price = fields.Integer("Price",compute="_compute_price")
 
     @api.onchange('quantity')
@@ -24,3 +24,7 @@ class FranchiseProductStock(models.Model):
             product.price = (product.product_id.price * product.quantity)
             if product.status=='ordered':
                 product.price = (-1)*product.price
+
+    def action_order(self):
+        for product in self:
+            product.status = "ordered"
