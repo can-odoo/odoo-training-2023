@@ -9,9 +9,11 @@
             <tree>
                 <field name="price"/>
                 <field name="partner_id"/>
-                <field name="status"/>
                 <field name="validity"/>
                 <field name="date_deadline"/>
+                <button name="to_action_accepted" type="object" icon="fa-check-circle"/>
+                <button name="to_action_refused" type="object" icon="fa-times-circle" aria-label="gvg"/>
+                <field name="status"/>
             </tree>
         </field>
     </record>
