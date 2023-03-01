@@ -13,7 +13,7 @@ class FranchiseStoreProperty(models.Model):
     opening_date = fields.Date(default = fields.Date.today)
     sale = fields.Float("Net sale ", copy=False)
     profit_margin = fields.Float("Profit Margin ( % )")
-    net_revanue = fields.Float("Total revanue ( rs ) :",readonly=True,default=0,copy=False,compute="_compute_revanue") 
+    net_revanue = fields.Float("Total revanue ( rs ) :",default=0,compute="_compute_revanue",inverse="_inverse_revanue") 
     phone_no =fields.Char(size=10)
     no_of_employee = fields.Integer()
     # type_franchise = fields.Selection(selection = [('job franchise','job franchise'),('product franchise','product franchise'),('business format franchise','business format franchise'),('investment franchise','investment franchise'),('conversion franchise','conversion franchise')])
@@ -26,6 +26,10 @@ class FranchiseStoreProperty(models.Model):
         for store in self:
             store.net_revanue = store.sale * store.profit_margin/100
 
+    def _inverse_revanue(self):
+        for store in self:
+            if store.sale:
+                store.profit_margin = store.net_revanue*100/store.sale
 
     @api.onchange('available')
     def _onchange_available(self):
@@ -33,4 +37,4 @@ class FranchiseStoreProperty(models.Model):
             if store.available==False:
                 return {'warning': {
                 'title': ("Warning"),
-                'message': ('Store closed !!')}}
+                'message': ('Store closed !!')}}            

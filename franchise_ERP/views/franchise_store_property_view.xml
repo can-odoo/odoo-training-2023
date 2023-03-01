@@ -53,7 +53,7 @@
                                 <field name="phone_no" />
                             </group>
                         </page>
-                        <page string="Product">
+                        <page string="Stock">
                             <field name="product_ids" />
                         </page>
                     </notebook>
