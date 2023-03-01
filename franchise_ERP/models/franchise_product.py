@@ -5,7 +5,7 @@ class FranchiseProduct(models.Model):
     _description = "This is Product model contains the information about product"
 
     name = fields.Char()
-    price = fields.Char()
+    price = fields.Float()
     description = fields.Char()
     categories = fields.Many2many('franchise.product.type')
     availability = fields.Boolean()
