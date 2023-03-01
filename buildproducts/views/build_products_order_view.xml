@@ -21,6 +21,10 @@
         <field name="model">build.products.order</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_confirmed" type="object" string="Confirm"/>
+                    <button name="action_delivered" type="object" string="Delivered"/>
+                </header>
                 <sheet>
                     <group>
                         <group>
