@@ -21,6 +21,12 @@
         <field name="model">franchise.store.property</field>
         <field name="arch" type="xml">
             <form string="Store Property Form">
+
+                <header>
+                    <button type="object" name="action_open" string="open"/>
+                    <button type="object" name="action_close" string="close"/>
+
+                </header>
                 <sheet>
                     <h1 style="margin-bottom:30px">
                         <field name="name" placeholder="Store Id/Name"/>

@@ -38,3 +38,11 @@ class FranchiseStoreProperty(models.Model):
                 return {'warning': {
                 'title': ("Warning"),
                 'message': ('Store closed !!')}}            
+
+    def action_open(self):
+        for store in self:
+            store.available = True
+
+    def action_close(self):
+        for store in self:
+            store.available = False
