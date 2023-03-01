@@ -1,4 +1,5 @@
 from odoo import fields, models, api
+from odoo.exceptions import UserError
 
 class RecurringPlan(models.Model):
      _name="estate.recurring.plan"
@@ -26,11 +27,12 @@ class RecurringPlan(models.Model):
      selling_price = fields.Float(readonly='1', copy=False)  #for read only field readonly=1 
      living_area = fields.Integer("Living Area (sqm)")
      garage = fields.Boolean()
-     state = fields.Selection(string='State',
-                              selection=[('new','New'),
+     state = fields.Selection(string='Status',
+                              selection=[('sold','Sold'),
+                                         ('cancle','Cancle'),
+                                         ('new','New'),
                                          ('offer received','Offer Received'),
-                                         ('offer accepted', 'Offer Accepted'),
-                                         ('sold and canceled','Sold And Canceled')],
+                                         ('offer accepted','Offer Accepted')],
                               help="Type is used to seprate",
                               required=True,
                               copy=False,
@@ -61,3 +63,14 @@ class RecurringPlan(models.Model):
           else:
                self.garden_area=0
                self.garden_orientation=False
+
+     def set_sold(self):
+          if self.state == "cancle": #"cancle" in self.mapped("state"):
+               raise UserError("Cancled property not for sale")
+          return self.write({"state":"sold"})
+     
+     def set_cancle(self):
+          if "sold" in self.mapped("state"):
+               raise UserError("sold  property not be cancled")
+          return self.write({"state":"cancle"})
+      
