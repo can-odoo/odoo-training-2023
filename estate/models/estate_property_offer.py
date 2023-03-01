@@ -32,6 +32,19 @@ class EstatePropertyOffer(models.Model):
             #     data.validity = (data.date_deadline - fields.Date.today()).days
             date = data.create_date.date() if data.create_date else fields.Date.today()
             data.validity = (data.date_deadline - date).days
+    
+    def to_action_accepted(self):
+        for data in self:
+            data.status = 'accepted'
+            data.property_id.selling_price = data.price
+            data.property_id.buyer_id = data.partner_id
+        return True
+    
+    def to_action_refused(self):
+        for data in self:
+            data.status = 'refused'
+            data.property_id.selling_price = 0
+        return True
             
 
 
