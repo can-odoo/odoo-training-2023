@@ -52,6 +52,10 @@
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
             <form string="test">
+                <header>
+                    <button name="action_sold" string="Sold" type="object"/>
+                    <button name="action_cancel" string="Cancel" type="object"/>
+                </header>
                 <sheet>
                     <h1>
                         <field name="name" />
@@ -81,7 +85,6 @@
                                 <field name="garden_area" />
                                 <field name="garden_orientation" />
                                 <field name="total_area"/>
-                                <field name="state"/>
                             </group>
                         </page>
                         <page string="Other info">

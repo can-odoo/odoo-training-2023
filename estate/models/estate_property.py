@@ -1,4 +1,4 @@
-from odoo import api,models,fields
+from odoo import api,models,fields,exceptions
 
 class EstateProperty(models.Model):
     _name = "estate.property"
@@ -20,7 +20,7 @@ class EstateProperty(models.Model):
     garden_area = fields.Integer()
     garden_orientation = fields.Selection(selection=[('north','North'),('east','East'),('west','West'),('south','South')])
     active = fields.Boolean( default=True,active=True)
-    state = fields.Selection(selection =[('new','New'), ('Offer_Received','Offer Received'), ('Offer_Accepted','Offer Accepted'), ('Sold_Canceled','Sold Canceled')], default='new')
+    state = fields.Selection(selection =[('new','New'), ('offer_received','Offer Received'), ('offer_accepted','Offer Accepted'), ('sold_canceled','Sold Canceled')], default='new')
     salesman = fields.Many2one('res.users',string="Salesman", default=lambda self: self.env.user)
     buyer = fields.Many2one('res.partner',copy =False)
     offer_ids = fields.One2many('estate.property.offer','property_id')
@@ -49,3 +49,18 @@ class EstateProperty(models.Model):
         else:
             self.garden_area = 0
             self.garden_orientation=None
+
+    def action_sold(self):
+        for record in self:
+            if record.state=="sold_canceled":
+                raise exceptions.UserError("A canceled property cannot be sold")
+            record.state = "offer_accepted"
+        return True
+            
+
+    def action_cancel(self):
+        for record in self:
+            if record.state=="offer_accepted":
+                raise exceptions.UserError("A sold property cannot be canceled.")
+            record.state = "sold_canceled" 
+        return True
