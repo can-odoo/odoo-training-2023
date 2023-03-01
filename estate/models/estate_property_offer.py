@@ -30,3 +30,12 @@ class propertyOffer(models.Model):
         for i in self:
             date = i.create_date.date() if i.create_date else fields.Date.today()
             i.validity = (i.date_deadline - date).days
+
+    def accept_state(self):
+        self.write({'state':'accepted'})
+        return self.mapped("property_id").write({'state':'offer accepted',
+                                                 'buyer_id':self.partner_id.id,
+                                                 'selling_price':self.price
+                                                })
+    def refused_state(self):
+        self.write({'state':'refused'})              
