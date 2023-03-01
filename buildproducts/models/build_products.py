@@ -30,3 +30,11 @@ class BuildProducts(models.Model):
                 record.total_sale = sum(record.order_ids.mapped('total_amount'))
             else:
                 record.total_sale=0.0
+
+    def action_opc(self):
+        for record in self:
+            record.product_type = 'opc'
+
+    def action_ppc(self):
+        for record in self:
+            record.product_type = 'ppc'
