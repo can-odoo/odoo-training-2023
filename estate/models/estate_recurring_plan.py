@@ -1,5 +1,6 @@
 from odoo import fields, models, api
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
+from odoo.tools.float_utils import float_compare
 
 class RecurringPlan(models.Model):
      _name="estate.recurring.plan"
@@ -45,6 +46,9 @@ class RecurringPlan(models.Model):
      total_area=fields.Integer(compute='_sum_total_area')
      best_price=fields.Float("Best Offer Price",compute='_best_price')
 
+     _sql_constraints = [('ExpectedPrice','CHECK(expected_price > 0)', 'Expected price should be greater than 0'),
+                         ('SellingPrice','CHECK(selling_price > 0)','Selling Price must be positive')]
+
      @api.depends('living_area','garden_area')
      def _sum_total_area(self):
           for i in self:
@@ -71,6 +75,12 @@ class RecurringPlan(models.Model):
      
      def set_cancle(self):
           if "sold" in self.mapped("state"):
-               raise UserError("sold  property not be cancled")
+               raise UserError("sold property not be cancled")
           return self.write({"state":"cancle"})
-      
+
+     @api.constrains('selling_price','expected_price')
+     def _check_sell_expec_90(self):
+          for record in self: 
+               if (float_compare(record.selling_price,record.expected_price * 90.0 / 100.0,precision_rounding=0.01)) < 0:
+                    raise ValidationError('Selling price must be 90% of expected price')
+               
