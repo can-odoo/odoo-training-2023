@@ -8,7 +8,7 @@ class FranchiseProductStock(models.Model):
     franchise_id = fields.Many2one('franchise.store.property')
     quantity = fields.Integer()
     status = fields.Selection(selection=[('in_stock','In stock'),('out of stock','Out of Stock'),('to_order','To order'),('ordered', 'Ordered')])
-    price = fields.Integer("Price",compute="_compute_price")
+    price = fields.Float("Price",compute="_compute_price")
 
     @api.onchange('quantity')
     def _onchange_quantity(self):

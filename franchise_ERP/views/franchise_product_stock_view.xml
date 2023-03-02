@@ -11,7 +11,7 @@
                 <field name="quantity" />
                 <field name="price"/>
                 <field name="status" />
-                <button type="object" name="action_order" title="Ordered"  attrs="{'invisible': ['|',('status','=','in_stock'),('status', '=', 'ordered')]}" icon="fa-check"/>
+                <button type="action" name="%(franchise_ERP.franchise_product_order_action)d" title="Ordered"  attrs="{'invisible': ['|',('status','=','in_stock'),('status', '=', 'ordered')]}" icon="fa-check"/>
             </tree>
         </field>
     </record>
