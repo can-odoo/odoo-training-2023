@@ -16,5 +16,7 @@
         name="Product" parent="franchise_first_level_product_menu" />
     <menuitem id="franchise_product_menu_action2" action="franchise_product_type_action"
         name="Product Type" parent="franchise_first_level_product_menu" />
+    <menuitem id="franchise_product_menu_action3" action="franchise_product_order_action"
+            name="Order" parent="franchise_first_level_product_menu" />
 
 </odoo>

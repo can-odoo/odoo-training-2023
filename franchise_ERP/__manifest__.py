@@ -8,7 +8,8 @@
         'views/franchise_product_type_view.xml',
         'views/franchise_product_view.xml',
 		'views/franchise_product_stock_view.xml',
-		'views/franchise_menus.xml'
+		'views/franchise_menus.xml',
+        'views/franchise_product_order_view.xml'
   
 	]
 
