@@ -20,6 +20,8 @@ class carOffers(models.Model):
     validity = fields.Integer("Validity",default=4)
     date_deadline  = fields.Date("Deadline", compute='_date_deadline', inverse='_inverse_deadline')
     
+    _sql_constraints = [('OfferPrice','CHECK(price > 0)','Offer price must be positive')]
+    
     @api.depends("create_date","validity")
     def _date_deadline(self):
         for i in self:
@@ -33,7 +35,7 @@ class carOffers(models.Model):
     def accept_state(self):
         self.write({'state':'accepted'})
         return self.mapped("car_id").write({'buyer_id':self.partner_id.id,
-                                            'car_price':self.price
+                                            'selling_price':self.price
                                           })
     def refused_state(self):
         self.write({'state':'refused'})          

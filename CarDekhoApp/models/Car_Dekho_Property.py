@@ -1,5 +1,6 @@
 from odoo import fields, models,api
-from odoo.exceptions import UserError
+from odoo.exceptions import UserError, ValidationError
+from odoo.tools.float_utils import float_compare
 
 class CarDekhoProperty(models.Model):
      _name="car.dekho.property"
@@ -43,6 +44,11 @@ class CarDekhoProperty(models.Model):
      width = fields.Float("Width (W)")
      t_area = fields.Float("Area (Sqm)", compute='_total_area')
      weight=fields.Integer("Weight (KG)", compute='_approx_weight')
+     selling_price = fields.Float(readonly='1', copy=False)
+
+     _sql_constraints = [('CarPrice','CHECK(car_price > 0)', 'Car price should be greater than 0'),
+                         ('SellingPrice','CHECK(selling_price > 0)','Selling Price must be positive'),
+                         ('LicenseNumber','UNIQUE(license_number)','License Number should be unique')]
      
      @api.depends('offer_ids.price')
      def _best_price_offer(self):
@@ -82,4 +88,11 @@ class CarDekhoProperty(models.Model):
      def car_cancel(self):
           if self.state == 'sold':
                raise UserError("sold car not be cancel")
-          return self.write({'state':'cancel'})               
+          return self.write({'state':'cancel'})
+
+     @api.constrains('selling_price','car_price')
+     def _check_sell_expec_80(self):
+          for record in self: 
+               if (float_compare(record.selling_price,record.car_price * 80.0 / 100.0,precision_rounding=0.01)) < 0:
+                    raise ValidationError('Selling price must be 80% of car price')               
+               
