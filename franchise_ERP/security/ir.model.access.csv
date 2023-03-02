@@ -3,3 +3,4 @@ access_franchise_store_property,access_franchise_store_property,model_franchise_
 access_franchise_product,access_franchise_product,model_franchise_product,base.group_user,1,1,1,1
 access_franchise_product_type,access_franchise_product_type,model_franchise_product_type,base.group_user,1,1,1,1
 access_franchise_product_stock,access_franchise_product_stock,model_franchise_product_stock,base.group_user,1,1,1,1
+access_franchise_product_order,access_franchise_product_order,model_franchise_product_order,base.group_user,1,1,1,1
