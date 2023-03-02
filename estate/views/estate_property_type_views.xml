@@ -10,5 +10,4 @@
     <!-- property_types_menus -->
     <menuitem id="menu_estate_property_type" name="Settings" parent="estate_menu_root"/>
     <menuitem id="menu_estate_property_type_action" action="estate_property_type_action" parent="menu_estate_property_type"/>
-     
 </odoo>
