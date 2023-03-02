@@ -38,3 +38,7 @@ class BuildProducts(models.Model):
     def action_ppc(self):
         for record in self:
             record.product_type = 'ppc'
+
+    _sql_constraints = [
+        ('check_price', 'CHECK(product_price > 0)', 'Product Price must be Positive.')
+    ]
