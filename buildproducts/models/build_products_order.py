@@ -41,8 +41,20 @@ class BuildProductsOrder(models.Model):
     def action_delivered(self):
         for order in self:
             order.state = 'delivered'
-            
 
+    # def write(self, vals):
+    #     if 'qty_ordered' in vals and self.product_id:
+    #         self.product_id.product_quantity -= vals['qty_ordered']
+    #     return super(BuildProductsOrder, self).write(vals)
     
-
+    # def write(self, vals):
+    #     if 'qty_ordered' in vals and self.product_id:
+    #         qty_diff = vals['qty_ordered'] - self.qty_ordered
+    #         self.product_id.product_quantity -= qty_diff
+    #     return super(BuildProductsOrder, self).write(vals)
     
+    # def unlink(self):
+    #     for order in self:
+    #         if order.product_id:
+    #             order.product_id.product_quantity += order.qty_ordered
+    #     return super(BuildProductsOrder, self).unlink()
