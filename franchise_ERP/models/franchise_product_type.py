@@ -5,3 +5,5 @@ class FranchiseProductType(models.Model):
     _description = "This is model stores the product type"
 
     name = fields.Char()
+
+    _sql_constraints = [ ('check_product_type','UNIQUE (name)','Product Type should be unique')]

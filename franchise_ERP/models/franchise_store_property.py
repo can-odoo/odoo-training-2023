@@ -46,3 +46,10 @@ class FranchiseStoreProperty(models.Model):
     def action_close(self):
         for store in self:
             store.available = False
+
+
+    _sql_constraints = [
+        ('check_sale','CHECK(sale >= 0)','A sale must be positive'),
+        ('check_net_revanue','CHECK(price >= 0)','A net_revanue  must be positive'),
+        ('check_profit_margin','CHECK(profit_margin >= 0 AND profit_margin<=100)','A profit margin must be under 100.'),
+    ]
