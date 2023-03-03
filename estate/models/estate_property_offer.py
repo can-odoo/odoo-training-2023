@@ -3,6 +3,7 @@ from odoo import api,models,fields
 class EstatePropertyOffer(models.Model):
     _name = "estate.property.offer"
     _description = "This is offer model contains the offers rais for perticular properties"
+    _order = "price desc"
 
     price = fields.Float()
     status = fields.Selection(selection =[('accepted','Accepted'),('refused','Refused')], copy=False)
@@ -32,6 +33,7 @@ class EstatePropertyOffer(models.Model):
             record.status = "accepted"
             record.property_id.selling_price = record.price
             record.property_id.buyer = record.partner_id
+            record.property_id.state="offer_accepted"
 
     def action_refused(self):
         for record in self:
