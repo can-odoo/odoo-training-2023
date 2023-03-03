@@ -39,6 +39,7 @@
                 <header>
                     <button name="action_to_sold" type="object" string="SOLD"/>
                     <button name="action_to_status" type="object" string="CANCEL"/>
+                    <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold"/>
                 </header>
                 <sheet>
                     <h1>
@@ -48,8 +49,8 @@
                     <div style="height: 30px"/>
                     <group>
                         <group>
-                            <field name="state"/>
-                            <field name="property_type_id"/>
+                            <!-- <field name= "state"/> -->
+                            <field name="property_type_id" options="{'no_create': True, 'no_open': True}"/>
                             <field name="postcode"/>
                             <field name="date_availability"/>
                         </group>
