@@ -11,4 +11,38 @@
     <menuitem id="estate_property_type_root" name="Settings" parent="estate_menu_root"/>
     <menuitem id="estate_property_type_menu" name="Property Types" action="estate_property_type_action" parent="estate_property_type_root"/>
 
+    <record id="view_estate_property_type_tree" model="ir.ui.view">
+        <field name="name">estate.property.type.tree</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="estate_property_type_form_view" model="ir.ui.view">
+        <field name="name">estate.property.type.form</field>
+        <field name="model">estate.property.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <h1><field name="name" placeholder="Enter Property Types"/></h1>
+                    <div style="height: 20px"/>
+                    <notebook>
+                        <page string="Properties">
+                            <field name="properties_ids">
+                                <tree>
+                                    <field name="name"/>
+                                    <field name="expected_price"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>                   
 </odoo>
