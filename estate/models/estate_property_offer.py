@@ -4,6 +4,7 @@ from dateutil.relativedelta import relativedelta
 class propertyOffer(models.Model):
     _name = "estate.property.offer"
     _description = "Property Offer"
+    _order = "price desc"
 
     price = fields.Float("Price", required=True)
     state = fields.Selection(
@@ -35,7 +36,7 @@ class propertyOffer(models.Model):
 
     def accept_state(self):
         self.write({'state':'accepted'})
-        return self.mapped("property_id").write({'state':'offer accepted',
+        return self.mapped("property_id").write({'state':'offer_accepted',
                                                  'buyer_id':self.partner_id.id,
                                                  'selling_price':self.price
                                                 })
