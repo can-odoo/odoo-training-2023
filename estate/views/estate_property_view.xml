@@ -53,19 +53,20 @@
         <field name="arch" type="xml">
             <form string="test">
                 <header>
-                    <button name="action_sold" string="Sold" type="object"/>
-                    <button name="action_cancel" string="Cancel" type="object"/>
+                    <button name="action_sold" string="Sold" states="new,offer_received,offer_accepted" type="object"/>
+                    <button name="action_cancel" string="Cancel" states="new,offer_received,offer_accepted" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold" />
                 </header>
                 <sheet>
                     <h1>
                         <field name="name" />
                     </h1>
-                    <field name="tag_ids" widget="many2many_tags" />
+                    <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                     <group>
                         <group>
                             <field name="postcode" />
                             <field name="expected_price" />
-                            <field name="property_type_id" />
+                            <field name="property_type_id" options="{'no_create':True}" />
                         </group>
                         <group>
                             <field name="date_availability" />
@@ -82,8 +83,8 @@
                                 <field name="facades" />
                                 <field name="garage" />
                                 <field name="garden" />
-                                <field name="garden_area" />
-                                <field name="garden_orientation" />
+                                <field name="garden_area" attrs="{'invisible': [('garden', '=', False)]}" />
+                                <field name="garden_orientation" attrs="{'invisible': [('garden', '=', False)]}"/>
                                 <field name="total_area"/>
                             </group>
                         </page>
@@ -94,7 +95,7 @@
                             </group>
                         </page>
                         <page string="Offers">
-                            <field name="offer_ids" />
+                            <field name="offer_ids" attrs="{'readonly':[('state','in',('offer_accepted','sold','canceled'))]}"/>
                         </page>
                     </notebook>
                 </sheet>

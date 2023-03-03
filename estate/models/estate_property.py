@@ -4,10 +4,11 @@ from odoo.tools.float_utils import float_compare,float_is_zero
 class EstateProperty(models.Model):
     _name = "estate.property"
     _description = "Test Model"
+    _order = "id desc"
 
     name = fields.Char('Title',required=True)
     description = fields.Char()
-    property_type_id = fields.Many2one(comodel_name="estate.property.type", string="Property Type")
+    property_type_id = fields.Many2one(comodel_name="estate.property.type",string="Property Type")
     tag_ids = fields.Many2many('estate.property.tag',string="Tags")
     postcode = fields.Char(required=True)
     date_availability = fields.Date('Available from',copy=False,default= fields.Date.add(fields.date.today(),months=3))
@@ -21,7 +22,7 @@ class EstateProperty(models.Model):
     garden_area = fields.Integer()
     garden_orientation = fields.Selection(selection=[('north','North'),('east','East'),('west','West'),('south','South')])
     active = fields.Boolean( default=True,active=True)
-    state = fields.Selection(selection =[('new','New'), ('offer_received','Offer Received'), ('offer_accepted','Offer Accepted'), ('sold_canceled','Sold Canceled')], default='new')
+    state = fields.Selection(selection =[('new','New'), ('offer_received','Offer Received'), ('offer_accepted','Offer Accepted'), ('sold','Sold'),('canceled','Canceled')], default='new')
     salesman = fields.Many2one('res.users',string="Salesman", default=lambda self: self.env.user)
     buyer = fields.Many2one('res.partner',copy =False)
     offer_ids = fields.One2many('estate.property.offer','property_id')
@@ -53,16 +54,16 @@ class EstateProperty(models.Model):
 
     def action_sold(self):
         for record in self:
-            if record.state=="sold_canceled":
+            if record.state=="canceled":
                 raise exceptions.UserError("A canceled property cannot be sold")
-            record.state = "offer_accepted"
+            record.state = "sold"
         return True
 
     def action_cancel(self):
         for record in self:
-            if record.state=="offer_accepted":
+            if record.state=="sold":
                 raise exceptions.UserError("A sold property cannot be canceled.")
-            record.state = "sold_canceled" 
+            record.state = "canceled" 
         return True
     
     @api.constrains('selling_price','expected_price')
