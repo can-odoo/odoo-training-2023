@@ -1,10 +1,11 @@
 from odoo import fields, models, api
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools.float_utils import float_compare
+from odoo.tools.float_utils import float_compare,float_is_zero
 
 class RecurringPlan(models.Model):
      _name="estate.recurring.plan"
      _description="Estate Property revenue plans"
+     _order="id desc"
 
      name = fields.Char('Property Name',required=True)
      description = fields.Char()
@@ -24,7 +25,7 @@ class RecurringPlan(models.Model):
                    ('north','North'), 
                    ('south','South')],
         help="Type is used to separate")
-     date_availability = fields.Date(copy=False, default=fields.Date.add(fields.Date.today(),months=3))
+     date_availability = fields.Date("Available From",copy=False, default=fields.Date.add(fields.Date.today(),months=3))
      selling_price = fields.Float(readonly='1', copy=False)  #for read only field readonly=1 
      living_area = fields.Integer("Living Area (sqm)")
      garage = fields.Boolean()
@@ -32,9 +33,8 @@ class RecurringPlan(models.Model):
                               selection=[('sold','Sold'),
                                          ('cancle','Cancle'),
                                          ('new','New'),
-                                         ('offer received','Offer Received'),
-                                         ('offer accepted','Offer Accepted')],
-                              help="Type is used to seprate",
+                                         ('offer_received','Offer Received'),
+                                         ('offer_accepted','Offer Accepted')],
                               required=True,
                               copy=False,
                               default="new")
@@ -81,6 +81,7 @@ class RecurringPlan(models.Model):
      @api.constrains('selling_price','expected_price')
      def _check_sell_expec_90(self):
           for record in self: 
-               if (float_compare(record.selling_price,record.expected_price * 90.0 / 100.0,precision_rounding=0.01)) < 0:
+               if ( not float_is_zero(record.selling_price, precision_rounding=0.01)
+                    and float_compare(record.selling_price,record.expected_price * 90.0 / 100.0,precision_rounding=0.01)) < 0:
                     raise ValidationError('Selling price must be 90% of expected price')
                
