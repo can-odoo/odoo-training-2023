@@ -8,16 +8,16 @@
             <search string="search property">
 
                 <!-- Search -->
-                <field name="name"></field>
-                <field name="postcode"></field>
-                <field name="expected_price"></field>
-                <field name="bedrooms"></field>
-                <field name="living_area"></field>
-                <field name="facades"></field>
+                <field name="name"/>
+                <field name="postcode"/>
+                <field name="expected_price"/>
+                <field name="bedrooms"/>
+                <field name="living_area" filter_domain="[('living_area','>=',self)]"/>
+                <field name="facades"/>
                 <field name="property_type_id" />
 
                 <!-- Filter -->
-                <filter string="Available" name="state"
+                <filter string="Available" name="available"
                     domain="['|', ('state','=','Offer_Received'),('state','=','new')]" />
 
                 <!-- Group By -->
@@ -33,15 +33,16 @@
         <field name="name">estate.property.tree</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <tree string="Channel">
+            <tree string="Channel"  decoration-bf="state=='offer_accepted'" decoration-success="state in ['offer_accepted','offer_received']"  decoration-muted="state=='sold'">
                 <field name="name" />
                 <field name="property_type_id" />
                 <field name="postcode" />
                 <field name="bedrooms" />
                 <field name="living_area" />
                 <field name="expected_price" />
-                <field name="selling_price" />
-                <field name="date_availability" />
+                <field name="selling_price" />                
+                <field name="date_availability" optional="True"/>
+                <field name="state"/>
             </tree>
         </field>
     </record>
@@ -64,6 +65,7 @@
                     <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
                     <group>
                         <group>
+                            <field name="state"/>
                             <field name="postcode" />
                             <field name="expected_price" />
                             <field name="property_type_id" options="{'no_create':True}" />
@@ -108,6 +110,7 @@
         <field name="name">Estate Property </field>
         <field name="res_model">estate.property</field>
         <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_available': True}</field>
     </record>
 
     <!-- Menu -->
