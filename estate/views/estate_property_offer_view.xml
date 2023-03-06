@@ -39,7 +39,7 @@
 
     <!-- Actions -->
     <record id="estate_property_offer_action" model="ir.actions.act_window">
-        <field name="name">estate.property.offer</field>
+        <field name="name">Property Offer</field>
         <field name="res_model">estate.property.offer</field>
         <field name="view_mode">tree,form</field>
         <field name="domain">[('property_type_id', '=', active_id)]</field>
