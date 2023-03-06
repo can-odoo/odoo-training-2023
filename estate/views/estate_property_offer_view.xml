@@ -6,14 +6,14 @@
         <field name="name">estate.property.offer.tree</field>
         <field name="model">estate.property.offer</field>
         <field name="arch" type="xml">
-            <tree string="offer_list">
-                <field name="price" />
+            <tree string="offer_list" editable="bottom" decoration-danger="status=='refused'" decoration-success="status=='accepted'">
                 <field name="partner_id" />
                 <field name="validity"/>
                 <field name="deadline"/>
-                <button name="action_accept" title="Accept" attrs="{'invisible': ['|',('status', '=', 'refused'),('status', '=', 'accepted')]}" type="object" icon="fa-check"/>
-                <button name="action_refused" title="Refuse" attrs="{'invisible': ['|',('status', '=', 'refused'),('status', '=', 'accepted')]}" type="object" icon="fa-times"/>
-                <field name="status" />
+                <field name="price" />
+                <button name="action_accept" title="Accept" attrs="{'invisible': [('status', 'in',('accepted','refused'))]}" type="object" icon="fa-check"/>
+                <button name="action_refused" title="Refuse" attrs="{'invisible': [('status', 'in',('accepted','refused'))]}" type="object" icon="fa-times"/>
+                <field name="status" optional="True" />
             </tree>
         </field>
     </record>
@@ -35,5 +35,13 @@
                 </sheet>
             </form>
         </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="estate_property_offer_action" model="ir.actions.act_window">
+        <field name="name">estate.property.offer</field>
+        <field name="res_model">estate.property.offer</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('property_type_id', '=', active_id)]</field>
     </record>
 </odoo>
