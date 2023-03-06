@@ -6,14 +6,15 @@
         <field name="name">estate.property.offer.list</field>
         <field name="model">estate.property.offer</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree editable="bottom" decoration-danger="status == 'refused'" decoration-success="status == 'accepted'">
                 <field name="price"/>
                 <field name="partner_id"/>
                 <field name="validity"/>
                 <field name="date_deadline"/>
-                <button name="to_action_accepted" type="object" icon="fa-check"/>
-                <button name="to_action_refused" type="object" icon="fa-times"/>
-                <field name="status"/>
+                <button name="to_action_accepted" type="object" icon="fa-check" attrs="{'invisible': [('status','in',('accepted','refused'))]}"/>
+                <button name="to_action_refused" type="object" icon="fa-times" attrs="{'invisible': [('status','in',('accepted','refused'))]}"/>
+                <field name="status" invisible="1"/>
+                <field name="property_type_id"/>
             </tree>
         </field>
     </record>
@@ -35,6 +36,13 @@
                 </sheet>
             </form>
         </field>
+    </record>
+
+    <record id="estate_property_offer_action" model="ir.actions.act_window">
+        <field name="name">Offer List</field>
+        <field name="res_model">estate.property.offer</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('property_type_id','=', active_id)]</field>
     </record>
 
 </odoo>
