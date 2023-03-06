@@ -9,6 +9,15 @@
         <field name="view_mode">tree,form</field>
     </record>
 
+    <record id="estate_property_tag_list" model="ir.ui.view">
+        <field name="name">Estate Property Tag List</field>
+        <field name="model">estate.property.tag</field>
+        <field name="arch" type="xml">
+            <tree string="tag list" editable="bottom">
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
     <menuitem id="estate_property_menu_property_tag" parent="first_level_menu_setting"
         name="Property Tag" action="estate_property_tag_action" />
 
