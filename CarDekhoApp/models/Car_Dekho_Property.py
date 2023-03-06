@@ -1,10 +1,11 @@
 from odoo import fields, models,api
 from odoo.exceptions import UserError, ValidationError
-from odoo.tools.float_utils import float_compare
+from odoo.tools.float_utils import float_compare,float_is_zero
 
 class CarDekhoProperty(models.Model):
      _name="car.dekho.property"
      _description="Car available at cheapest price"
+     _order="id desc"
      
      _rec_name="car_name"
      car_name = fields.Char('Name',required=True)
@@ -27,10 +28,11 @@ class CarDekhoProperty(models.Model):
      car_price = fields.Float()
      state = fields.Selection(string='State',
                               selection=[('new','New'),
-                                         ('old','Old'),
-                                         ('modified', 'Modified'),
                                          ('sold','Sold'),
-                                         ('cancel','Cancel')],
+                                         ('cancel','Cancel'),
+                                         ('modified','Modified'),
+                                         ('offer_received','Offer received'),
+                                         ('offer_accepted','Offer Accepted')],
                               required=True,
                               copy=False,
                               default="new")
@@ -85,7 +87,7 @@ class CarDekhoProperty(models.Model):
                raise UserError("Cancled car not for sale")
           return self.write({'state':'sold'})
 
-     def car_cancel(self):
+     def car_cancle(self):
           if self.state == 'sold':
                raise UserError("sold car not be cancel")
           return self.write({'state':'cancel'})
@@ -93,6 +95,7 @@ class CarDekhoProperty(models.Model):
      @api.constrains('selling_price','car_price')
      def _check_sell_expec_80(self):
           for record in self: 
-               if (float_compare(record.selling_price,record.car_price * 80.0 / 100.0,precision_rounding=0.01)) < 0:
-                    raise ValidationError('Selling price must be 80% of car price')               
+               if (not float_is_zero(record.selling_price, precision_rounding=0.01)
+                   and float_compare(record.selling_price,record.car_price * 80.0 / 100.0,precision_rounding=0.01)) < 0:
+                   raise ValidationError('Selling price must be 80% of car price')               
                
