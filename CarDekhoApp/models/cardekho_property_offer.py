@@ -4,6 +4,7 @@ from dateutil.relativedelta import relativedelta
 class carOffers(models.Model):
     _name="cardekho.property.offer"
     _description="Car offer"
+    _order="price desc"
 
     price = fields.Float("Price", required=True)
     state = fields.Selection(
@@ -19,7 +20,7 @@ class carOffers(models.Model):
     car_id = fields.Many2one("car.dekho.property", string="CarId", required=True)
     validity = fields.Integer("Validity",default=4)
     date_deadline  = fields.Date("Deadline", compute='_date_deadline', inverse='_inverse_deadline')
-    
+    car_property_id = fields.Many2one(related='car_id.car_property_id',store=True,string='Property Type')
     _sql_constraints = [('OfferPrice','CHECK(price > 0)','Offer price must be positive')]
     
     @api.depends("create_date","validity")
