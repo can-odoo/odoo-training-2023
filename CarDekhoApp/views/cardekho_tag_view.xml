@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
     <odoo>
         <record id="cardekho_tag_action" model="ir.actions.act_window">
-            <field name="name">cardekho.property.tag</field>
+            <field name="name">Car Tags</field>
             <field name="res_model">cardekho.property.tag</field>
             <field name="view_mode">tree,form</field>
+        </record>
+        <record id="cardekho_property_tag_view_tree" model="ir.ui.view">
+            <field name="name">cardekho.property.tag.tree</field>
+            <field name="model">cardekho.property.tag</field>
+            <field name="arch" type="xml">
+                <tree string="Property Tags" editable="bottom">
+                    <field name='name'/>
+                </tree>
+            </field>
         </record>
     </odoo>
