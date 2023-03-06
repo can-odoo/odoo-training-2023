@@ -73,7 +73,7 @@ class EstateProperty(models.Model):
 
     _sql_constraints = [
         ('check_expected_price_positive', 'CHECK(expected_price > 0)', 'Expected Price must be greater than 0.'),
-        ('check_selling_price_positive', 'CHECK(selling_price > 0)', 'Selling Price must be greater than 0.'),
+        ('check_selling_price_positive', 'CHECK(selling_price >= 0)', 'Selling Price must be greater than 0.'),
     ]
 
     @api.constrains('expected_price', 'selling_price')
