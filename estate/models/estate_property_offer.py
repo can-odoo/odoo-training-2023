@@ -11,6 +11,7 @@ class EstatePropertyOffer(models.Model):
         selection = [('accepted', 'Accepted'),('refused', 'Refused')], copy=False)
     partner_id = fields.Many2one('res.partner', required=True)
     property_id = fields.Many2one('estate.property', required=True)
+    property_type_id = fields.Many2one(related="property_id.property_type_id", store=True)
     validity = fields.Integer('Validity(Days)', default=7)
     date_deadline = fields.Date('Deadline', compute='_compute_date_deadline', inverse='_inverse_date_deadline')
 
@@ -39,6 +40,7 @@ class EstatePropertyOffer(models.Model):
             data.status = 'accepted'
             data.property_id.selling_price = data.price
             data.property_id.buyer_id = data.partner_id
+            data.property_id.state = 'offer_accepted'
         return True
     
     def to_action_refused(self):
