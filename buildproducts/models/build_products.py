@@ -4,6 +4,7 @@ from odoo import api
 class BuildProducts(models.Model):
     _name = "build.products"
     _description = "Build Products"
+    _order = 'id desc'
      
     name = fields.Char('Product Name' , required=True)
     description = fields.Char('Description', required=True)
@@ -14,14 +15,7 @@ class BuildProducts(models.Model):
     active = fields.Boolean(string='Active', default=True)
     order_ids = fields.One2many('build.products.order', 'product_id', string='Orders')
     tag_ids = fields.Many2many('build.products.tag' , string='Product Tags')
-    total_sale = fields.Float(string='Total Sales' , compute='_compute_total_sales')
-
-    @api.onchange('order_ids')
-    def _onchange_order_qty(self):
-        for product in self:
-            ordered_qty = sum(order.qty_ordered for order in product.order_ids)
-            if ordered_qty:
-                product.product_quantity = product._origin.product_quantity - ordered_qty
+    total_sale = fields.Float(string='Total Sales' , compute='_compute_total_sales', store=True)
 
     @api.depends('order_ids')
     def _compute_total_sales(self):
