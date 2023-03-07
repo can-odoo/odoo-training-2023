@@ -3,9 +3,10 @@ from odoo import models,fields,api
 class FranchiseStoreProperty(models.Model):
     _name = "franchise.store.property"
     _description = "This is showroom property module"
+    _order = "sequence"
 
     # franchise_id = fields.Integer(required=True)
-    name = fields.Char("Firm")
+    name = fields.Char("Firm",required=True)
     franchise_owner = fields.Char()
     store_manager = fields.Many2one('res.users',required =True)
     no_of_product = fields.Integer(default=0)
@@ -19,6 +20,8 @@ class FranchiseStoreProperty(models.Model):
     # type_franchise = fields.Selection(selection = [('job franchise','job franchise'),('product franchise','product franchise'),('business format franchise','business format franchise'),('investment franchise','investment franchise'),('conversion franchise','conversion franchise')])
     available = fields.Boolean("Active",default=True)
     product_ids = fields.One2many('franchise.product.stock','franchise_id')
+    order_ids = fields.One2many('franchise.product.order','franchise_id')
+    sequence = fields.Integer()
 
 
     @api.depends('sale','profit_margin')
@@ -46,7 +49,7 @@ class FranchiseStoreProperty(models.Model):
     def action_close(self):
         for store in self:
             store.available = False
-
+        
 
     _sql_constraints = [
         ('check_sale','CHECK(sale >= 0)','A sale must be positive'),
