@@ -1,5 +1,78 @@
 <odoo>
 
+    <!-- List -->
+    <record id="franchise_product_order_list" model="ir.ui.view">
+        <field name="name">Order List</field>
+        <field name="model">franchise.product.order</field>
+        <field name="arch" type="xml">
+            <tree decoration-bf="state=='delivered'" decoration-success="state=='delivered'" decoration-danger="state=='canceled'">
+                <field name="product_stock_id"/>
+                <field name="franchise_id"/>
+                <field name="quantity"/>
+                <field name="price"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form -->
+    <record id="franchise_product_order_form" model="ir.ui.view">
+        <field name="name">Order Form</field>
+        <field name="model">franchise.product.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="canceled" string="canceled" states="ordered,shipped,preparing" type="object"/>
+                    <button name="delivered" string="delivered" states="ordered,shipped,preparing" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="ordered,preparing,shipped,delivered" />
+                </header>
+                <sheet>
+
+                    <group>
+                        <group>
+                            <field name="product_stock_id" string="Order ID" options="{'no_create': True}" attrs="{'readonly':[('state','in',('delivered','canceled'))]}" />
+                            <field name="price" />
+                        </group>
+                        <group>
+                            <field name="franchise_id" string="Store" />
+                            <field name="quantity" string="Quantity" />
+                        </group>
+                    </group>
+                    <separator string="Track" />
+
+                    <group>
+                        <group>
+                            <field name="state" attrs="{'readonly':[('state','in',('delivered','canceled'))]}" />
+                        </group>
+                        <group>
+                            <field name="payment" />
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search -->
+    <record id="franchise_product_order_search" model="ir.ui.view">
+        <field name="name">Order Search </field>
+        <field name="model">franchise.product.order</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="franchise_id"/>
+                <field name="state"/>
+                <field name="product_stock_id"/>
+
+                <filter name="Delivered" domain="[('state','=','delivered')]"/>
+
+                <filter name="state" context="{'group_by':'state'}"/>
+                <filter name="Franchise" context="{'group_by':'franchise_id'}"/>
+
+            </search>
+        </field>
+    </record>
+
+    <!-- Actions -->
     <record id="franchise_product_order_action" model="ir.actions.act_window">
         <field name="name">Orders </field>
         <field name="res_model">franchise.product.order</field>
