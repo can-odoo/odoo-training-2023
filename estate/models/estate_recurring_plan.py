@@ -84,4 +84,8 @@ class RecurringPlan(models.Model):
                if ( not float_is_zero(record.selling_price, precision_rounding=0.01)
                     and float_compare(record.selling_price,record.expected_price * 90.0 / 100.0,precision_rounding=0.01)) < 0:
                     raise ValidationError('Selling price must be 90% of expected price')
-               
+     # delete method
+     def unlink(self):
+          if not set(self.mapped('state')) == {'new','cancle'}:
+               raise UserError("Not be possible to delete a property which is not new or canceled.")
+          return super().unlink()

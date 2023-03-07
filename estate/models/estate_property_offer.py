@@ -1,5 +1,6 @@
 from odoo import fields, models, api
 from dateutil.relativedelta import relativedelta
+from odoo.exceptions import UserError
 
 class propertyOffer(models.Model):
     _name = "estate.property.offer"
@@ -42,4 +43,15 @@ class propertyOffer(models.Model):
                                                  'selling_price':self.price
                                                 })
     def refused_state(self):
-        self.write({'state':'refused'})              
+        self.write({'state':'refused'})
+
+    @api.model
+    def create(self,vals):
+        if vals.get('property_id') and vals.get('price'):
+            record = self.env['estate.recurring.plan'].browse(vals['property_id'])
+            if record.offer_ids:
+                maxOffer = max(record.mapped('offer_ids.price'))
+                if maxOffer > vals['price']:
+                    raise UserError('price not accepted')
+            record.state = 'offer_received'
+        return super().create(vals)            
