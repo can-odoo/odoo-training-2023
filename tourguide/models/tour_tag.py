@@ -5,3 +5,4 @@ class TourTag(models.Model):
     _description = 'Tour Tags'
 
     name = fields.Char('Tour Tags', required=True)
+    color = fields.Integer('Color')
