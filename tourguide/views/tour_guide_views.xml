@@ -19,11 +19,13 @@
         <field name="name">tour.guide.list</field>
         <field name="model">tour.guide</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree decoration-success="status == 'available'" decoration-danger="status == 'unavailable'">
                 <field name="name"/>
                 <field name="destination"/>
                 <field name="start_date"/>
                 <field name="end_date"/>
+                <field name="price"/>
+                <field name="status" invisible="1"/>
             </tree>
         </field>
     </record>
@@ -34,22 +36,30 @@
         <field name="model">tour.guide</field>
         <field name="arch" type="xml">
             <form string="Tours">
+                <header>
+                    <button type="action" 
+                        name="%(booking_trigger_action)d" 
+                        string="New Booking"
+                        class="oe_highlight"
+                        attrs="{'invisible': [('status', '=', 'unavailable')]}"/>
+                </header>
                 <sheet>
                     <h1>
                         <field name="name" placeholder="Enter Tour Name "/>
                     </h1>
-                    <field name="tag_ids" widget="many2many_tags"/>
+                    <field name="tag_ids" widget="many2many_tags" options="{'color_field':'color'}" />
                     <div style="height:20px"/>
                     <group>
                         <group>
                             <field name="destination"/>
-                            <field name="active"/>
-                            <field name="min_price"/>
+                            <field name="price"/>
+                            <field name="status"/>
+                            <!-- <field name="active"/> -->
                         </group>
                         <group>
                             <field name="start_date"/>
                             <field name="end_date"/>
-                            <field name="max_price"/>
+                            <field name="guide_id"/>
                         </group>
                     </group>
                     <div style="height:20px"/>
@@ -58,10 +68,11 @@
                             <group>
                                 <field name="description"/>
                                 <field name="tour_type"/>
+                                <field name="duration"/>
                             </group>
                         </page>
-                        <page string="Packages">
-                            <field name="package_ids"/>
+                        <page string="Itinerary">
+                            <field name="desc"/>
                         </page>
                     </notebook>
                 </sheet>
