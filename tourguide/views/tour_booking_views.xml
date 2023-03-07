@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <record id="tour_booking_action" model="ir.actions.act_window">
+        <field name="name"> Bookings </field>
+        <field name="res_model">tour.booking</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="booking_menu_root" name="Booking" parent="tour_menu_root"/>
+    <menuitem id="booking_menu" name="Bookings" parent="booking_menu_root"/>
+    <menuitem id="booking_action" name="Booking" action="tour_booking_action" parent="booking_menu"/>
+
+    <record id="tour_booking_list_view" model="ir.ui.view">
+        <field name="name">Booking List</field>
+        <field name="model">tour.booking</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="booking_status == 'confirmed'">
+                <field name="name"/>
+                <field name="booking_date"/>
+                <field name="tour_guide_id"/>
+                <field name="booking_status"/>
+                <field name="total_cost"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="tour_booking_form_view" model="ir.ui.view">
+        <field name="name">Booking Form</field>
+        <field name="model">tour.booking</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="booking_status" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="booking_date"/>
+                        <field name="tour_guide_id"/>
+                        <field name="guide"/>
+                        <field name="ticket_qty"/>
+                        <field name="booking_status"/>
+                        <field name="total_cost"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="booking_trigger_action" model="ir.actions.act_window">
+        <field name="name"> New Booking </field>
+        <field name="res_model">tour.booking</field>
+        <field name="view_mode">form</field>
+    </record>
+
+</odoo>
