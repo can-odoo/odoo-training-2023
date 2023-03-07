@@ -8,5 +8,6 @@
            'views/estate_property_views_type.xml',
            'views/estate_menus.xml',
            'views/estate_property_views_offer.xml',
+           'views/res_users_views.xml',
   ]
 }
