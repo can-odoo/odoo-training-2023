@@ -7,6 +7,7 @@
         <field name="model">franchise.store.property</field>
         <field name="arch" type="xml">
             <tree string="Channel">
+                <field name="sequence" widget="handle" />
                 <field name="name" />
                 <field name="store_manager" />
                 <field name="location" />
@@ -23,13 +24,12 @@
             <form string="Store Property Form">
 
                 <header>
-                    <button type="object" name="action_open" string="open"/>
-                    <button type="object" name="action_close" string="close"/>
-
+                    <button type="object" name="action_open" string="open" attrs="{'invisible':[('available','=',True)]}"/>
+                    <button type="object" name="action_close" string="close" attrs="{'invisible':[('available','=',False)]}" />
                 </header>
                 <sheet>
                     <h1 style="margin-bottom:30px">
-                        <field name="name" placeholder="Store Id/Name"/>
+                        <field name="name" placeholder="Store Id/Name" />
                     </h1>
                     <group>
                         <group>
@@ -62,6 +62,9 @@
                         <page string="Stock">
                             <field name="product_ids" />
                         </page>
+                        <page string="Ordered">
+                            <field name="order_ids"/>
+                        </page>
                     </notebook>
                 </sheet>
             </form>
@@ -69,26 +72,25 @@
     </record>
 
     <!-- Search -->
-    <!-- <record id="franchise_property_search" model="ir.ui.view">
+    <record id="franchise_property_search" model="ir.ui.view">
         <field name="name">franchise.property.search</field>
-        <field name="model">franchise.property</field>
+        <field name="model">franchise.store.property</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name"/>
-                <field name="franchise_id"/>
-                <field name="franchise_owner"/>
-                <field name="location"/>
 
-                <filter string="Available Now" name="active" domain="[('active','=',1)]"/>
-                <separator></separator>
-                <filter string = "India" name="location" domain="[('location','=','India')]"/>
+                <field name="name" />
+                <field name="franchise_owner" />
+                <field name="location" />
 
-                <filter string="location" name="location" context = "{'group_by':'location'}"/>
-                <filter string="Firm" name="Firm" context = "{'group_by':'name'}"/>
-                <filter string="franchise_id" name="franchise_id" context = "{'group_by':'franchise_id'}"/>      
+                <filter string="Available Now" name="active" domain="[('available','=',1)]" />
+                <separator/>
+                <filter string="India" name="location" domain="[('location','=','India')]" />
+
+                <filter string="location" name="location" context="{'group_by':'location'}" />
+
             </search>
         </field>
-    </record> -->
+    </record>
 
     <!-- Action -->
     <record id="franchise_store_property_action" model="ir.actions.act_window">
