@@ -17,11 +17,12 @@
         <field name="name">build.products.list</field>
         <field name="model">build.products</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree decoration-success="product_quantity &gt;0" decoration-danger="product_quantity &lt;0">
                 <field name="name"/>
                 <field name="product_type"/>
                 <field name="product_grade"/>
                 <field name="product_price"/>
+                <field name="product_quantity"/>
             </tree>
         </field>
     </record>
@@ -39,7 +40,7 @@
                 <sheet>
                     <h1><field name="name" placeholder="Enter Product name"/></h1>
                     <div style="height: 15px"/>
-                    <field name="tag_ids" widget="many2many_tags" placeholder="Tags"/>
+                    <field name="tag_ids" widget="many2many_tags" placeholder="Tags" options="{'color_field': 'color'}"/>
                     <div style="height: 15px"/>
                     <group>
                         <group>
