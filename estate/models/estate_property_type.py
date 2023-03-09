@@ -15,8 +15,5 @@ class EstatePropertyType(models.Model):
     def _compute_offer(self):
         for record in self:
             record.offer_count = len(record.offer_ids)
-    
-    def test_action(self):
-        print("Test test test")
 
     _sql_constraints = [ ('check_property_type','UNIQUE (name)','Property Type should be unique')]
