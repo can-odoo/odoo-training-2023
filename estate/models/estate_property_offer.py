@@ -1,4 +1,4 @@
-from odoo import api,models,fields
+from odoo import api,models,fields,exceptions
 
 class EstatePropertyOffer(models.Model):
     _name = "estate.property.offer"
@@ -45,3 +45,13 @@ class EstatePropertyOffer(models.Model):
     _sql_constraints = [
         ('check_offer_price_1','CHECK(price > 0)','A offer price must be strictly positive'),
     ]
+
+    @api.model
+    def create(self,vals):
+        self.env['estate.property'].browse(vals['property_id']).state = "offer_received"
+        best_offer = self.env['estate.property'].browse(vals['property_id']).best_offer
+
+        if best_offer > vals['price']:
+            raise exceptions.ValidationError("The offer must be higher than Rs. "+str(best_offer) ) 
+        return super().create(vals)
+        
