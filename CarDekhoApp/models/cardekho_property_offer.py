@@ -1,5 +1,6 @@
 from odoo import fields, models, api
 from dateutil.relativedelta import relativedelta
+from odoo.exceptions import UserError
 
 class carOffers(models.Model):
     _name="cardekho.property.offer"
@@ -35,8 +36,22 @@ class carOffers(models.Model):
 
     def accept_state(self):
         self.write({'state':'accepted'})
-        return self.mapped("car_id").write({'buyer_id':self.partner_id.id,
+        return self.mapped("car_id").write({'state':'offer_accepted',
+                                            'buyer_id':self.partner_id.id,
                                             'selling_price':self.price
                                           })
     def refused_state(self):
-        self.write({'state':'refused'})          
+        self.write({'state':'refused'})
+
+
+    #pyhton inheritance
+    @api.model
+    def create(self,vals):
+        if vals.get('car_id') and vals.get('price'):
+            record = self.env['car.dekho.property'].browse(vals['car_id'])
+            if record.offer_ids:
+                maxOffer = max(record.mapped('offer_ids.price'))
+                if maxOffer > vals['price']:
+                    raise UserError('price not accepted')
+            record.state = 'offer_received'
+        return super().create(vals)               

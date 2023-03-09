@@ -98,4 +98,9 @@ class CarDekhoProperty(models.Model):
                if (not float_is_zero(record.selling_price, precision_rounding=0.01)
                    and float_compare(record.selling_price,record.car_price * 80.0 / 100.0,precision_rounding=0.01)) < 0:
                    raise ValidationError('Selling price must be 80% of car price')               
-               
+
+     #Python inheritance
+     def unlink(self):
+          if not set(self.mapped('state'))=={'new','cancel'}:
+               raise UserError('Not be possible to delete')
+          return super.unlink()          
