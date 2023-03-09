@@ -104,4 +104,24 @@ class EstateProperty(models.Model):
 		for data in self:
 			if not float_is_zero(data.selling_price, precision_digits = 2) and float_compare(data.selling_price, data.expected_price*(0.9), precision_digits = 2) == -1:
 				raise ValidationError("Selling Price must be atleast 90% of Expected Price if you want to accept this offer")
-
+	
+	# @api.constrains('offer_ids')
+	# def check_offer_ids(self):
+	# 	for data in self:
+	# 		if data.offer_ids:
+	# 			data.state = 'offer_received'
+	# 			for record in data.offer_ids:
+	# 				if record.price < data.best_price:
+	# 					raise ValidationError(f'The offer must be higher than {data.best_price}')
+	
+	@api.ondelete(at_uninstall=False)
+	def _check_state(self):
+		for data in self:
+			if data.state not in ['new','canceled']:
+				raise ValidationError("Only new and canceled property can be deleted")
+	
+	def unlink(self):
+		for data in self:
+			if data.state not in ['new','canceled']:
+				raise ValidationError("Only new and canceled property can be deleted")
+		return super(EstateProperty, self).unlink()
