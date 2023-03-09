@@ -1,5 +1,5 @@
 from odoo import models, fields
-from odoo import api
+from odoo import api, exceptions
 from dateutil.relativedelta import relativedelta
 
 class EstatePropertyOffer(models.Model):
@@ -48,5 +48,10 @@ class EstatePropertyOffer(models.Model):
         ('check_offer_price_positive', 'CHECK(price > 0)', 'Offer Price must be greater than 0.'),
     ]
 
-
-
+    @api.model
+    def create(self,vals):
+        offer_check = self.env['estate.property'].browse(vals['property_id'])
+        offer_check.state='offer_received'
+        if offer_check.best_price > vals['price']:
+            raise exceptions.ValidationError(f'The offer must be greater than {offer_check.best_price}')
+        return super(EstatePropertyOffer, self).create(vals)
