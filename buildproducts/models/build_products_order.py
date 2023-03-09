@@ -70,5 +70,7 @@ class BuildProductsOrder(models.Model):
         for order in self:
             if order.product_id:
                 order.product_id.product_quantity += order.qty_ordered
+            if order.state not in ['new', 'canceled']:
+                raise ValidationError("You can not delete a property that is not in 'New' or 'Canceled' state.")
         return super(BuildProductsOrder, self).unlink()
    
