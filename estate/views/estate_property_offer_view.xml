@@ -10,10 +10,10 @@
                 <field name="partner_id" />
                 <field name="validity"/>
                 <field name="deadline"/>
-                <field name="price" />
                 <button name="action_accept" title="Accept" attrs="{'invisible': [('status', 'in',('accepted','refused'))]}" type="object" icon="fa-check"/>
                 <button name="action_refused" title="Refuse" attrs="{'invisible': [('status', 'in',('accepted','refused'))]}" type="object" icon="fa-times"/>
-                <field name="status" optional="True" />
+                <field name="status" />
+                <field name="price" />
             </tree>
         </field>
     </record>

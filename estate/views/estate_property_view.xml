@@ -18,7 +18,7 @@
 
                 <!-- Filter -->
                 <filter string="Available" name="available"
-                    domain="['|', ('state','=','Offer_Received'),('state','=','new')]" />
+                    domain="['|', ('state','=','offer_received'),('state','=','new')]" />
 
                 <!-- Group By -->
                 <group expand="1">
