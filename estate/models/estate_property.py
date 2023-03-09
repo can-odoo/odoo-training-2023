@@ -76,3 +76,9 @@ class EstateProperty(models.Model):
         ('check_expected_price_1', 'CHECK(expected_price > 0)', 'A property expected price must be strictly positive'),
         ('check_selling_price_1', 'CHECK(selling_price >= 0)', 'A property selling price must be positive'),
     ]
+
+    @api.ondelete(at_uninstall=False)
+    def _unlink_on_state(self):
+        for record in self:
+            if record.state not in ('new','canceled'):
+                raise exceptions.ValidationError("Only new or canceled property can delete")
