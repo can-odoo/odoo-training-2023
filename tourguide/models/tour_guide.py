@@ -21,6 +21,7 @@ class TourGuide(models.Model):
     end_date = fields.Date('End Date')
     tag_ids = fields.Many2many('tour.tag')
     guide_id = fields.Many2one('res.users', string="TourGuide", default=lambda self:self.env.user)
+    booking_count = fields.Integer('Booking Count')
 
     @api.depends('package_ids.price')
     def _check_min_price(self):
@@ -53,3 +54,7 @@ class TourGuide(models.Model):
         ('check_price', 'CHECK(price > 0)', 'Tour Price must be Stricly Positive'),
         ('check_duration', 'CHECK(duration > 0)', 'Duration should be positive')
     ]
+
+    def count_booking(self):
+	    for data in self:
+                data.booking_count = self.env['tour.booking'].search_count([('tour_guide_id', '=', data.id)])
