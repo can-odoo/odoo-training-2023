@@ -17,7 +17,7 @@ class BuildProducts(models.Model):
     tag_ids = fields.Many2many('build.products.tag' , string='Product Tags')
     total_sale = fields.Float(string='Total Sales' , compute='_compute_total_sales', store=True)
 
-    @api.depends('order_ids')
+    @api.depends('order_ids.total_amount')
     def _compute_total_sales(self):
         for record in self:
             if record.order_ids:
