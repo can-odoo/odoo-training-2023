@@ -8,7 +8,7 @@ class FranchiseProductStock(models.Model):
     product_id = fields.Many2one('franchise.product')
     franchise_id = fields.Many2one('franchise.store.property')
     quantity = fields.Integer()
-    status = fields.Selection(selection=[('in_stock','In stock'),('out of stock','Out of Stock'),('to_order','To order'),('ordered', 'Ordered')])
+    status = fields.Selection(selection=[('in_stock','In stock'),('out of stock','Out of Stock'),('to_order','To order'),('ordered', 'Ordered'),('order_canceled','Order Canceled')])
     price = fields.Float("Price",compute="_compute_price",store=True)
 
     @api.onchange('quantity')
@@ -34,3 +34,7 @@ class FranchiseProductStock(models.Model):
     def action_order(self):
         for product in self:
             product.status = "ordered"
+
+
+    _sql_constraints = [('unique_product','UNIQUE(product_id,status)','Product Already exist with this status,plz update there')]
+    
