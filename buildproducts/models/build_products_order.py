@@ -38,6 +38,7 @@ class BuildProductsOrder(models.Model):
             order.state = 'canceled'
             # # order.product_id.product_quantity += order.qty_ordered
             order.total_amount = 0
+            order.qty_ordered = 0
             # if order.product_id:
             #     order.product_id.product_quantity += order.qty_ordered
             #     order.product_id.total_sale -= order.total_amount
@@ -49,14 +50,17 @@ class BuildProductsOrder(models.Model):
                 raise UserError('Canceled order cannot be marked delivered')
             order.state = 'delivered'
 
-    @api.constrains('total_amount', 'product_id.product_price')
-    def _check_total_amount(self):
-        for order in self:
-            if order.total_amount <= order.product_id.product_price:
-                raise ValidationError('Total Amount cannot be less than Product Price!')
+    # @api.constrains('total_amount', 'product_id.product_price')
+    # def _check_total_amount(self):
+    #     for order in self:
+    #         if order.total_amount <= order.product_id.product_price:
+    #             raise ValidationError('Total Amount cannot be less than Product Price!')
 
+    @api.model
     def create(self, vals):
         order = super(BuildProductsOrder, self).create(vals)
+        if vals['total_amount'] <= order.product_id.product_price:
+            raise ValidationError('Total Amount cannot be less than Product Price!')
         order.product_id.product_quantity -= order.qty_ordered
         return order
     
