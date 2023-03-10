@@ -10,4 +10,4 @@
     'views/res_users_views.xml',
         # 'views/estate_menus.xml'
 	]
-}
+} 
