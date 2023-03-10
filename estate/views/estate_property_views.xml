@@ -40,8 +40,8 @@
         <field name="arch" type="xml">
             <form string="Estate">
                 <header>
-                    <button name="action_to_sold" type="object" string="SOLD"/>
-                    <button name="action_to_status" type="object" string="CANCEL" attrs="{'invisible': [('state','in','sold')]}"/>
+                    <button name="action_to_cancel" type="object" string="CANCEL" attrs="{'invisible': [('state','in',('cancel','sold'))]}"/>
+                    <button name="action_to_sold" type="object" string="SOLD" attrs="{'invisible': [('state','in',('sold','cancel'))]}"/>
                     <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold"/>
                 </header>
                 <sheet>
