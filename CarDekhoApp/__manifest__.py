@@ -10,9 +10,10 @@
   'data':[
          'security/ir.model.access.csv',
          'views/cardekho_details_views.xml',
+         'views/cardekho_offer_view.xml',
          'views/cardekho_type_view.xml',
          'views/cardekho_tag_view.xml',
-         'views/cardekho_offer_view.xml',
          'views/cardekho_menus.xml',
+         'views/res_users_views.xml'
   ]
 }
