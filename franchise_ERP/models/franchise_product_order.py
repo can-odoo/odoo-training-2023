@@ -1,4 +1,4 @@
-from odoo import models,fields,api
+from odoo import models,fields,api,exceptions
 
 class franchiseProductOrder(models.Model):
     _name ="franchise.product.order"
@@ -23,7 +23,15 @@ class franchiseProductOrder(models.Model):
     def canceled(self):
         for order in self:
             order.state="canceled"
+            order.product_stock_id.status= "order_canceled"
     
     def delivered(self):
         for order in self:
+            if order.payment:
+                raise exceptions.UserError("Payment should be done!! ")
             order.state="delivered"
+
+    @api.model
+    def create(self,vals):
+        print(vals)
+        return super().create(vals)
