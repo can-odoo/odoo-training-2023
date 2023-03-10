@@ -58,7 +58,6 @@ class EstatePropertyOffer(models.Model):
     @api.model
     def create(self,vals):
         x = self.env['estate.property'].browse(vals['property_id'])
-        print("   ********     ", x)
         x.state = 'offer_received'
         if x.best_price > vals['price']:
             raise ValidationError(f'The Price should be greater than {x.best_price}')
