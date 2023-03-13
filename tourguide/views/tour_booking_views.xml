@@ -1,37 +1,38 @@
 <?xml version="1.0"?>
 <odoo>
-
-    <record id="tour_booking_action" model="ir.actions.act_window">
-        <field name="name"> Bookings </field>
+    <record id="booking_action" model="ir.actions.act_window">
+        <field name="name">Bookings</field>
         <field name="res_model">tour.booking</field>
         <field name="view_mode">tree,form</field>
     </record>
 
     <menuitem id="booking_menu_root" name="Booking" parent="tour_menu_root"/>
-    <menuitem id="booking_menu" name="Bookings" parent="booking_menu_root"/>
-    <menuitem id="booking_action" name="Booking" action="tour_booking_action" parent="booking_menu"/>
+    <menuitem id="menu_booking" name="Bookings" parent="booking_menu_root"/>
+    <menuitem id="menu_booking_action" name="Bookings" action="booking_action" parent="menu_booking"/>
 
-    <record id="tour_booking_list_view" model="ir.ui.view">
-        <field name="name">Booking List</field>
+    <record id="booking_list_view" model="ir.ui.view">
+        <field name="name">tour.booking.list</field>
         <field name="model">tour.booking</field>
         <field name="arch" type="xml">
-            <tree decoration-success="booking_status == 'confirmed'">
+            <tree>
                 <field name="name"/>
                 <field name="booking_date"/>
                 <field name="tour_guide_id"/>
                 <field name="booking_status"/>
+                <field name="ticket_qty"/>
                 <field name="total_cost"/>
             </tree>
         </field>
     </record>
 
-    <record id="tour_booking_form_view" model="ir.ui.view">
-        <field name="name">Booking Form</field>
+    <record id="booking_form_view" model="ir.ui.view">
+        <field name="name">tour.booking.form</field>
         <field name="model">tour.booking</field>
         <field name="arch" type="xml">
-            <form>
+            <form string="Tour Booking">
                 <header>
-                    <field name="booking_status" widget="statusbar"/>
+                    <button type="object" name="action_to_confirm" string="CONFIRM"/>
+                    <button type="object" name="action_to_cancel" string="CANCEL"/>
                 </header>
                 <sheet>
                     <group>
@@ -39,19 +40,13 @@
                         <field name="booking_date"/>
                         <field name="tour_guide_id"/>
                         <field name="guide"/>
-                        <field name="ticket_qty"/>
                         <field name="booking_status"/>
+                        <field name="ticket_qty"/>
                         <field name="total_cost"/>
                     </group>
                 </sheet>
             </form>
         </field>
-    </record>
-
-    <record id="booking_trigger_action" model="ir.actions.act_window">
-        <field name="name"> New Booking </field>
-        <field name="res_model">tour.booking</field>
-        <field name="view_mode">form</field>
     </record>
 
 </odoo>
