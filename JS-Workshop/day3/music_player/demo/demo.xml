@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+          <record id="song1" model="music_player.music_player">
+            <field name="name">temp-song-1</field>
+            <field name="filename">temp-song-1.mp3</field>
+            <!-- <field name="album_id"/> -->
+          </record>
+
+          <record id="song2" model="music_player.music_player">
+            <field name="name">temp-song-2</field>
+            <field name="filename">temp-song-2.mp3</field>
+            <!-- <field name="album_id"/> -->
+          </record>
+<!-- 
+          <record id="song3" model="music_player.music_player">
+            <field name="name">Object 2</field>
+            <field name="value">20</field>
+          </record> -->
+    </data>
+</odoo>
