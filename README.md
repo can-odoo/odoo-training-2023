@@ -34,3 +34,6 @@ Technical training of Odooer's
 * [Chapter 15](https://www.odoo.com/documentation/16.0/developer/howtos/rdtraining/15_qwebintro.html) A Brief History Of QWeb
 
 * [Chapter 16](https://www.odoo.com/documentation/16.0/developer/howtos/rdtraining/16_guidelines_pr.html) Polish Your Code And Submit Your PR
+
+* [QWeb Templates](https://www.odoo.com/documentation/16.0/developer/reference/frontend/qweb.html#reference-qweb)
+* [Build PDF Reports](https://www.odoo.com/documentation/16.0/developer/tutorials/pdf_reports.html#)
