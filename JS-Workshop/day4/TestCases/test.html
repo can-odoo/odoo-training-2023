@@ -1,0 +1,23 @@
+<html>
+    <div>
+
+        <div id="qunit"></div>
+        <div id="qunit-fixture"></div>
+
+        <script>
+            QUnit.test("first test", function(assert){
+          
+            document.getSelector('.clear').click()
+            document.getSelector('.one').click()
+            document.getSelector('.sum_operator').click()
+            document.getSelector('.two').click()
+            document.getSelector('.equal-sign').click()
+            
+            const ans = document.getElementById("result").value
+
+            assert.equal(ans,3,"Answer should be 3")
+        })
+        </script>
+    </div>
+
+</html>
