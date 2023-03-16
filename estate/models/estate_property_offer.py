@@ -39,9 +39,9 @@ class EstatePropertyOffer(models.Model):
     def to_action_accepted(self):
         for data in self:
             data.status = 'accepted'
+            data.property_id.state = 'offer_accepted'
             data.property_id.selling_price = data.price
             data.property_id.buyer_id = data.partner_id
-            data.property_id.state = 'offer_accepted'
         return True
     
     def to_action_refused(self):
