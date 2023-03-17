@@ -1,0 +1,10 @@
+<odoo>
+    <record id="res_user_report_action" model="ir.actions.report">
+        <field name="name">User Report</field>
+        <field name="model">res.users</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">estate.report_res_user_offer</field>
+        <field name="binding_type">report</field>
+        <field name="binding_model_id" ref="base.model_res_users"/>
+    </record>
+</odoo>
