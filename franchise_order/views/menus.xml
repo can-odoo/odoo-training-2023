@@ -1,0 +1,9 @@
+<odoo>
+    <!-- Menu -->
+    <menuitem id="root_menu" name="Franchise Order" />
+
+    <!-- franchise -->
+    <menuitem id="first_level_menu" name="Explore" parent="root_menu" />
+    <menuitem id="franchise_model_menu_action" action="franchise_order_action"
+    name="Order" parent="first_level_menu" />
+</odoo>

@@ -25,14 +25,14 @@
         <field name="name">franchise.product.stock.tree</field>
         <field name="model">franchise.product.stock</field>
         <field name="arch" type="xml">
-            <tree string="Channel" editable="bottom" decoration-success="status=='ordered'"
+            <tree string="Channel" decoration-success="status=='ordered'"
                 decoration-bf="status=='ordered'" decoration-danger="status in 'out of stock'">
                 <field name="product_id" />
                 <field name="quantity" />
                 <field name="price" />
                 <field name="status" />
                 <button type="action" name="%(franchise_ERP.franchise_product_order_action)d"
-                    title="Ordered"
+                    title="Ordered" 
                     attrs="{'invisible': ['|',('status','=','in_stock'),('status', '=', 'ordered')]}"
                     icon="fa-check" />
             </tree>
