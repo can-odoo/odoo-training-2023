@@ -6,7 +6,7 @@ class estateProperty(models.Model):
     def action_sold(self):
         self.env['account.move'].create({
             'partner_id':self.buyer.id,
-            'move_type':"in_refund",
+            'move_type':"out_invoice",
             'invoice_line_ids':[
                 Command.create({
                     'name':'Brokerage',

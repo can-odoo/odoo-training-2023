@@ -9,7 +9,11 @@
         'views/estate_property_offer_view.xml',
 		'views/estate_property_type_view.xml',
 		'views/estate_property_tag_view.xml',
-        'views/res_users_view.xml'
+        'views/res_users_view.xml',
+        'report/estate_property_report.xml',
+        'report/estate_property_template.xml',
+        'report/res_user_report.xml',
+        'report/res_user_template.xml'
 		# 'views/estate_menus.xml'
 	],
     'application' : True
