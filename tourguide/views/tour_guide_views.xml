@@ -36,13 +36,6 @@
         <field name="arch" type="xml">
             <form string="Tours">
                 <sheet>
-                    <header>
-                        <button type="action" 
-                            name="%(booking_action)d" 
-                            string="New Booking"
-                            class="oe_highlight"
-                            attrs="{'invisible': [('status', '=', 'unavailable')]}"/>
-                    </header>
                     <h1>
                         <field name="name" placeholder="Enter Tour Name "/>
                     </h1>
