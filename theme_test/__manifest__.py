@@ -13,11 +13,14 @@
         'views/snippets.xml',
         'views/options.xml'
 
-
     ],
     'assets': {
         'web.assets_frontend': [
             'theme_test/static/scss/style.scss',
-        ] 
+        ],
+        'website.assets_editor':[
+            'theme_test/static/test_editor.js'
+        ]
+        
     }
 }
