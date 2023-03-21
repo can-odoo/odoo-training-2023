@@ -9,6 +9,8 @@
         'views/assets.xml',
         'views/layout.xml',
         'views/pages.xml',
+        'views/snippets.xml',
+        'views/options.xml',
     ],  
     'assets': {
         'web.assets_frontend': [
@@ -19,6 +21,9 @@
         ],
         'web._assets_frontend_helpers':[
             'theme_tutorial/static/scss/primary_variables.scss',
+        ],
+        'website.assets_editor':[
+            'theme_tutorial/static/tutorial_editor.js',
         ]
     }
 }
