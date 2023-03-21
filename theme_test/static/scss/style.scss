@@ -1,3 +1,19 @@
 footer {
     background-color: blue !important;
+}
+
+// These lines will add a default style for our snippet. Now let's create our custom rules for the options.
+
+.s_testimonial {
+    border: 1px solid #EAEAEA;
+    padding: 20px;
+
+    &.s_testimonial_shadow h3 {
+        color: blue;
     }
+
+    &.s_testimonial_grey_bg {
+        border: none;
+        background-color: #EAEAEA;
+    }
+}
