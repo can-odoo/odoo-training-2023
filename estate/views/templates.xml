@@ -1,0 +1,126 @@
+<odoo>
+    <template id="properties_page_template">
+        <t t-call="website.layout">
+            <t t-set="title">Real Estate</t>
+            <div class="mt-4 d-flex justify-content-between mx-3 border-bottom pb-2">
+                <form class="d-flex" method="GET">
+                    <input type="date" id="filterDate" name="filterDate" class="form-control"/>
+                    <input type="submit" value="Listed After" class="btn btn-primary p-1 ms-2"/>
+                </form>
+            </div>
+            <div class="container-fluid mt-4">
+                <div class="row">
+                    <t t-foreach="properties" t-as="prop">
+                        <div class="col-sm-3 mt-2">
+                            <div class="card" style="width: 18rem;">
+                                <a t-attf-href="/properties/{{ slug(prop) }}" class="text-decoration-none">
+                                    <img src="/estate/static/image/p1.jpeg/" class="card-img-top" alt="..." />
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-size: 22px; font-weight: bold; color: #333;">
+                                        <t t-esc="prop.name"/>
+                                    </h5>
+                                    <p class="card-text" style="font-size: 16px; color: #666;">
+                                        <t t-esc="prop.description"/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+            <div t-if="pager" class="d-flex justify-content-center products_pager mt-2 mb-2">
+                <t t-call="website.pager" />
+            </div>
+        </t>
+    </template>
+
+    <template id="properties_details">
+        <t t-call="website.layout">
+            <t t-set="title">Properties</t>
+            <body style="padding: 2.5rem;">
+                <div class="container-fluid row mt-4" style="margin: 0; padding: 0;">
+                    <div class="col-md mt-4 mb-2" style="background: #ffe0b2; overflow-y: auto; height: 390px;">
+                        <table class="table table-condensed table-striped mt-4" style="">
+                            <thead colspan="2" style="font">
+                                <strong>Summary</strong>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>
+                                        <p t-field="prop.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Description</td>
+                                    <td>
+                                        <p t-field="prop.description"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Expected Price</td>
+                                    <td>
+                                        <p t-field="prop.expected_price"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Property Type: </td>
+                                    <td>
+                                        <p t-esc="prop.property_type_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Bedrooms</td>
+                                    <td>
+                                        <p t-field="prop.bedrooms"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <t t-if='prop.garden'>
+                                        <td>Garden</td>
+                                        <td>
+                                            <p t-field="prop.garden"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                                <tr>
+                                    <td>Status</td>
+                                    <td>
+                                        <p t-field="prop.state"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Best Price</td>
+                                    <td>
+                                        <p t-field="prop.best_price"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Seller</td>
+                                    <td>
+                                        <p t-field="prop.user_id"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tag</td>
+                                    <td>
+                                        <t t-set="tags" t-value="prop.mapped('tag_ids')"/>
+                                        <t t-foreach="tags" t-as="tag">
+                                            <span t-field="tag.name" class="badge rounded-pill bg-info text-dark"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md mt-4">
+                        <div class="card mt-10" style="width: 100%;">
+                            <img src="/estate/static/image/p1.jpeg/" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </body>
+        </t>
+    </template>
+</odoo>    
