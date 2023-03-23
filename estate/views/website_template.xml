@@ -1,0 +1,203 @@
+<odoo>
+    <template id="index">
+        <t t-call="website.layout">
+            <div class="container">
+                <form action="/property" method="get">
+                    <div class="d-flex row p-2 m-4">
+                        <div class="col-6">
+                            <div class="title">
+                                <h3>Property List</h3>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <input type="date" name="search"
+                                class="form-control o_website_form_input o_website_form_date" />
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-primary" type="submit">Listed After</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row m-4">
+                    <t t-foreach="property" t-as="prop">
+                        <div class="col-lg-4 col-md-6 mb-5">
+                            <div class="card" style="width: 18rem;">
+                                <img t-att-src='image_data_uri(prop.image)' class="card-img-top"
+                                    alt="..." />
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <t t-out="prop.name" />
+                                    </h5>
+                                    <p class="card-text">
+                                        <t t-out="prop.description"></t>
+                                    </p>
+                                    <a t-attf-href="/property/{{slug(prop)}}"
+                                        class="btn btn-info ">Explore - Visit </a>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+                <div t-if="pager" class="d-flex justify-content-center mb-3">
+                    <t t-call="website.pager" />
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="property_details">
+        <div class="bg-light">
+            <t t-call="website.layout">
+                <div class="container mb-5 mt-5">
+
+                    <div class="m-5">
+                        <h3>Property Details :</h3>
+                    </div>
+
+                    <div class="row m-4">
+                        <div class="col-6 ">
+                            <table class="table table-info">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Properties</th>
+                                        <th scope="col">Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Name</th>
+                                        <td>
+                                            <p t-field="property.name" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Property_Type</th>
+                                        <td>
+                                            <p t-field="property.property_type_id" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">PostCode</th>
+                                        <td>
+                                            <p t-field="property.postcode" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Living Area</th>
+                                        <td>
+                                            <p t-field="property.living_area" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Facades</th>
+                                        <td>
+                                            <p t-field="property.facades" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Garage</th>
+                                        <td>
+                                            <p t-field="property.garage" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Garden</th>
+                                        <td>
+                                            <p t-field="property.garden" />
+                                        </td>
+                                    </tr>
+                                    <t t-if="property.garden">
+                                        <tr>
+                                            <th scope="row">garden area</th>
+                                            <td>
+                                                <p t-field="property.garden_area" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Garden</th>
+                                            <td>
+                                                <p t-field="property.garden_orientation" />
+                                            </td>
+                                        </tr>
+                                    </t>
+                                    <tr>
+                                        <th scope="row">Offers</th>
+                                        <td>
+                                            <a t-attf-href='/property/offers/{{slug(property)}}'>Click
+                                                here</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-6">
+                            <div class="container m-3 mt-0">
+                                <div class="card" style="width: 28rem;">
+                                    <h5 class="card-title m-3">Title : <span t-field="property.name" /></h5>
+                                    <img t-att-src="image_data_uri(property.image)"
+                                        class="card-img-top" alt="..." />
+                                    <div class="card-body">
+                                        <p class="card-text">
+                                            <p t-field="property.description" />
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </template>
+
+    <template id="property_offers">
+        <t t-call="website.layout">
+            <h4 align="center" class="m-4">Offers</h4>
+            <div class="container p-5 pt-1">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Partner</th>
+                            <th scope="col">Property</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">deadline</th>
+                            <th scope="col">status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="offers" t-as="offer">
+                            <tr>
+                                <td>
+                                    <p t-field="offer.partner_id" />
+                                </td>
+                                <td>
+                                    <p t-field="offer.property_id" />
+                                </td>
+                                <td>
+                                    <p t-field="offer.price" />
+                                </td>
+                                <td>
+                                    <p t-field="offer.deadline" />
+                                </td>
+                                <td>
+                                    <p t-field="offer.status" />
+                                </td>
+                            </tr>
+
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+
+    <record id="website_property_menu" model="website.menu">
+        <field name="name">Properties</field>
+        <field name="url">property</field>
+        <field name="parent_id" ref="website.main_menu" />
+        <field name="sequence">50</field>
+    </record>
+
+</odoo>
