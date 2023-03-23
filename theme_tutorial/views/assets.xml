@@ -5,9 +5,4 @@
             <link rel="stylesheet" type="text/scss" href="/theme_tutorial/static/scss/style.scss"/>
         </xpath>
     </template> -->
-    <!-- <template id="my_js" inherit_id="website.assets_editor" name="My Js">
-        <xpath expr="script[last()]" position="after">
-            <script type="text/javascript" src="/theme_tutorial/static/tutorial_editor.js" />
-        </xpath>
-    </template> -->
 </odoo>
