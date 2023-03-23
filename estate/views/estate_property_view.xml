@@ -67,6 +67,7 @@
                 <sheet>
                     <h1>
                         <field name="name" />
+                        <field name="image"/>
                     </h1>
                     <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
                     <group>
@@ -96,6 +97,7 @@
                                 <field name="garden_orientation"
                                     attrs="{'invisible': [('garden', '=', False)]}" />
                                 <field name="total_area" />
+                                <field name="active"/>
                             </group>
                         </page>
                         <page string="Other info">
