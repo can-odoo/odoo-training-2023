@@ -36,6 +36,10 @@
             <tree string="Channel" decoration-bf="state=='offer_accepted'"
                 decoration-success="state in ['offer_accepted','offer_received']"
                 decoration-muted="state=='sold'">
+                <header>
+                    <button name="%(estate.property_wizard_action)d" string="Create Offer"
+                        type="action" />
+                </header>
                 <field name="name" />
                 <field name="property_type_id" />
                 <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
@@ -43,7 +47,7 @@
                 <field name="bedrooms" />
                 <field name="living_area" />
                 <field name="expected_price" />
-                <field name="selling_price" />
+                <field name="best_offer" />
                 <field name="date_availability" optional="True" />
                 <field name="state" />
             </tree>
@@ -67,7 +71,7 @@
                 <sheet>
                     <h1>
                         <field name="name" />
-                        <field name="image"/>
+                        <field name="image" widget="image" class="oe_avatar" />
                     </h1>
                     <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" />
                     <group>
@@ -97,7 +101,7 @@
                                 <field name="garden_orientation"
                                     attrs="{'invisible': [('garden', '=', False)]}" />
                                 <field name="total_area" />
-                                <field name="active"/>
+                                <field name="active" />
                             </group>
                         </page>
                         <page string="Other info">
@@ -127,19 +131,20 @@
                     <t t-name="kanban-box">
                         <div class="oe_kanban_global_click">
                             <div>
-                                <h3><field name="name" /></h3>
+                                <h3>
+                                    <field name="name" />
+                                </h3>
                             </div>
                             <div>
-                                <t t-if="record.state.raw_value =='offer_accepted'">
-                                Selling Price : <field name="selling_price" />
-                                    </t>
+                                <t t-if="record.state.raw_value =='offer_accepted'"> Selling Price : <field
+                                        name="selling_price" />
+                                </t>
+                            </div>
+                            <div> Expected Price : <field name="expected_price" />
                             </div>
                             <div>
-                                Expected Price : <field name="expected_price" />
-                            </div>
-                            <div>
-                                <t t-if="record.state.raw_value =='offer_received'">
-                                    Best Offer : <field name="best_offer" />
+                                <t t-if="record.state.raw_value =='offer_received'"> Best Offer : <field
+                                        name="best_offer" />
                                 </t>
                             </div>
                             <div>
