@@ -1,0 +1,49 @@
+<odoo>
+
+    <!-- wizard form -->
+    <record id="property_wizard_form" model="ir.ui.view">
+        <field name="name">estate.property.wizard.view</field>
+        <field name="model">estate.property.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <separator string="Properties" />
+
+                    <field name="property_ids" widget="many2many_list" />
+
+                    <separator string="Offer" />
+                    <group>
+                        <field name="price" />
+                        <field name="buyer" />
+                        <field name="validity" />
+                    </group>
+                    <footer>
+                        <button name="create_offer" string=" Create Offer" type="object" />
+                        <button string="Cancel" special="cancel" />
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- wizard Action -->
+    <record id="property_wizard_action" model="ir.actions.act_window">
+        <field name="name">Create Offers</field>
+        <field name="res_model">estate.property.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="model_estate_property"/>
+        <field name="binding_view_types">list</field>
+    </record>
+
+    <!-- Multi window ( Depcrecated )  -->
+    <!-- <act_window id="multi_property_wizard"
+        name="Create Offer"
+        binding_model="estate.property"
+        res_model="estate.property.wizard"
+        view_mode="form"
+        target="new"
+    /> -->
+
+
+</odoo>
