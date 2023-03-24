@@ -1,0 +1,92 @@
+<odoo>
+    <template id="index_website">
+        <t t-call="website.layout">
+            <div class="container">
+                <div class="m-5" align="center">
+                    <div class="title">
+                        <h3>Stores List</h3>
+                    </div>
+                </div>
+
+                <div class="row m-4">
+                    <t t-foreach="stores" t-as="store">
+                        <div class="col-lg-4 col-md-6 mb-5">
+                            <div class="card" style="width: 18rem;">
+                                <img t-att-src='image_data_uri(store.image)' class="card-img-top"
+                                    alt="..." />
+                                <h5 class="card-title m-3 mb-0 ">
+                                    <t t-out="store.name" />
+                                </h5>
+                                <div class="card-body d-flex justify-content-between">
+                                    <div>
+                                        <p class="card-text m-2">
+                                            <t t-out="store.location"></t>
+                                        </p>
+                                    </div>
+                                    <a t-attf-href="/store/{{slug(store)}}"
+                                        class="btn btn-warning">visit store </a>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+
+            <div t-if="pager" class="d-flex justify-content-center mb-3">
+                <t t-call="website.pager" />
+            </div>
+        </t>
+    </template>
+
+    <template id="store_properties_website">
+        <t t-call="website.layout">
+            <div class="container" align="center">
+                <div class="row m-5">
+
+                    <div class="card col-6" style="width: 18rem;">
+                        <img t-att-src='image_data_uri(store.image)' class="card-img-top" alt="..." />
+                        <div class="card-body">
+                            <h5 class="card-title" t-field="store.name"></h5>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <table class="table">
+                            <tbody>
+                              <tr>
+                                <th scope="row">Name</th>
+                                <td><p t-field="store.name"/></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Owner</th>
+                                <td><p t-field="store.franchise_owner"/></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Manager</th>
+                                <td><p t-field="store.store_manager"/></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Location </th>
+                                <td><p t-field="store.location"/></td>
+                              </tr>
+                              <tr>
+                                <th scope="row">Opening Date</th>
+                                <td><p t-field="store.opening_date"/></td>
+                              </tr>
+                            </tbody>
+                          </table> 
+                    </div>
+
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <record id="website_franchise_menu" model="website.menu">
+        <field name="name">Franchises</field>
+        <field name="url">store</field>
+        <field name="parent_id" ref="website.main_menu" />
+        <field name="sequence">50</field>
+    </record>
+
+</odoo>
