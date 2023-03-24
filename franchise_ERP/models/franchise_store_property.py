@@ -22,6 +22,7 @@ class FranchiseStoreProperty(models.Model):
     product_ids = fields.One2many('franchise.product.stock','franchise_id')
     order_ids = fields.One2many('franchise.product.order','franchise_id')
     sequence = fields.Integer()
+    image = fields.Image()
 
 
     @api.depends('sale','profit_margin')

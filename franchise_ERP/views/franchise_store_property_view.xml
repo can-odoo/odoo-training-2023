@@ -30,6 +30,7 @@
                 <sheet>
                     <h1 style="margin-bottom:30px">
                         <field name="name" placeholder="Store Id/Name" />
+                        <field name="image" widget="image" class="oe_avatar" />
                     </h1>
                     <group>
                         <group>
