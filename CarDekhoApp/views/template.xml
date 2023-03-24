@@ -1,0 +1,106 @@
+<odoo>
+    <template id="car_name_template">
+        <t t-call="website.layout">
+            <t t-set="title">Car Dekho</t>
+            <div class="container-fluid mt-4">
+                <div class="row">
+                    <t t-foreach="cars" t-as="car">
+                        <div class="col-sm-3 mt-2">
+                            <div class="card" style="width: 18rem;">
+                                <a t-attf-href="/car/{{ slug(car) }}" class="text-decoration-none">
+                                    <img src="/CarDekhoApp/static/image/c1.jpeg/" class="card-img-top" alt="..." />
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title" style="font-size: 22px; font-weight: bold; color: #333;">
+                                        <p t-field="car.car_name"/>
+                                    </h5>
+                                    <p class="card-text" style="font-size: 16px; color: #666;">
+                                        <t t-esc="car.description"/>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+            <div t-if="pager" class="d-flex justify-content-center products_pager mt-2 mb-2">
+                <t t-call="website.pager" />
+            </div>
+        </t>
+    </template>
+
+    <template id="car_details_template">
+        <t t-call="website.layout">
+            <t t-set="title">Properties</t>
+            <body style="padding: 2.5rem;">
+                <div class="container-fluid row mt-4" style="margin: 0; padding: 0;">
+                    <div class="col-md mt-4 mb-2" style="background: #ffe0b2; overflow-y: auto; height: 390px;">
+                        <table class="table table-condensed table-striped mt-4" style="">
+                            <thead colspan="2" style="font">
+                                <strong>Summary</strong>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>
+                                        <p t-field="car.car_name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Description</td>
+                                    <td>
+                                        <p t-field="car.description"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Expected Price</td>
+                                    <td>
+                                        <p t-field="car.car_price"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Car Type: </td>
+                                    <td>
+                                        <p t-esc="car.car_property_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Status</td>
+                                    <td>
+                                        <p t-field="car.state"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Best Price</td>
+                                    <td>
+                                        <p t-field="car.best_price"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Seller</td>
+                                    <td>
+                                        <p t-field="car.user_id"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Tag</td>
+                                    <td>
+                                        <t t-set="tags" t-value="car.mapped('tag_ids')"/>
+                                        <t t-foreach="tags" t-as="tag">
+                                            <span t-field="tag.name" class="badge rounded-pill bg-info text-dark"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md mt-4">
+                        <div class="card mt-10" style="width: 100%;">
+                            <img src="/CarDekhoApp/static/image/c1.jpeg/" alt="..." />
+                        </div>
+                    </div>
+                </div>
+            </body>
+        </t>
+    </template>
+</odoo>
