@@ -1,170 +1,175 @@
 <?xml version="1.0"?>
-    <odoo>
-        <record id="estate_property_action" model="ir.actions.act_window">
-            <field name="name">RealState</field>
-            <field name="res_model">estate.recurring.plan</field>
-            <field name="view_mode">tree,kanban,form</field>
-            <field name="context">{'search_default_available':True, 'search_default_current':True}</field>
-        </record>
-        <!-- List View -->
-        <record id="estate_list_reason_view_tree" model="ir.ui.view">
-            <field name="name">estate.recurring.plan</field>
-            <field name="model">estate.recurring.plan</field>
-            <field name="arch" type="xml">
-                <tree string="Tests" decoration-success="state in ('offer_received','offer_accepted')" decoration-muted="state=='sold'" decoration-bf="state=='offer_accepted'">
-                    <field name="name"/>
-                    <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
-                    <field name="postalcode"/>
-                    <field name="property_type_id"/>
-                    <field name="date_availability" optional="hide"/>
-                    <field name="state"/>
-                    <field name="expected_price"/>
-                    <field name="selling_price"/>
-                    <field name="description"/>
-                </tree>
-            </field>
-        </record>
+<odoo>
+    <record id="estate_property_action" model="ir.actions.act_window">
+        <field name="name">RealState</field>
+        <field name="res_model">estate.recurring.plan</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="context">{'search_default_available':True, 'search_default_current':True}</field>
+    </record>
+    <!-- List View -->
+    <record id="estate_list_reason_view_tree" model="ir.ui.view">
+        <field name="name">estate.recurring.plan</field>
+        <field name="model">estate.recurring.plan</field>
+        <field name="arch" type="xml">
+            <tree string="Estate_Property" decoration-success="state in ('offer_received','offer_accepted')" decoration-muted="state=='sold'" decoration-bf="state=='offer_accepted'">
+                <!-- wizard header -->
+                <header>
+                    <button name="%(estate_wizard_action)d" type="action" string="Add offer"/>
+                </header>
+                <field name="name"/>
+                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="postalcode"/>
+                <field name="property_type_id"/>
+                <field name="date_availability" optional="hide"/>
+                <field name="state"/>
+                <field name="expected_price"/>
+                <field name="selling_price"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
 
-        <!-- Form View -->
-        <record id="estate_from_reason_view_form" model="ir.ui.view">
-            <field name="name">estate.recurring.plan</field>
-            <field name="model">estate.recurring.plan</field>
-            <field name="arch" type="xml">
-                <form string="Test">
-                    <header>
-                        <button name="set_sold" type="object" string="Sold" states="new, offer_accepted"/>
-                        <button name="set_sold" type="object" string="Sold" states="offer_accepted" class="oe_highlight"/>
-                        <button name="set_cancle" type="object" string="Cancle" states="new,offer_received,offer_accepted"/>
-                        <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold"/>
-                    </header>
-                    <sheet>
-                        <div class="oe_title">
-                            <h1>
-                                <field name="name" placeholder="Name"/>
-                            </h1>
-                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" placeholder="Select Tag"/>
-                        </div>
+    <!-- Form View -->
+    <record id="estate_from_reason_view_form" model="ir.ui.view">
+        <field name="name">estate.recurring.plan</field>
+        <field name="model">estate.recurring.plan</field>
+        <field name="arch" type="xml">
+            <form string="Test">
+                <header>
+                    <button name="set_sold" type="object" string="Sold" states="new, offer_accepted"/>
+                    <button name="set_sold" type="object" string="Sold" states="offer_accepted" class="oe_highlight"/>
+                    <button name="set_cancle" type="object" string="Cancle" states="new,offer_received,offer_accepted"/>
+                    <field name="state" widget="statusbar" statusbar_visible="new,offer_received,offer_accepted,sold"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Name"/>
+                        </h1>
+                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" placeholder="Select Tag"/>
+                    </div>
+                    <group>
                         <group>
-                            <group>
-                                <field name="property_type_id" 
-                                       options="{'no_create': True, 'no_edit': True}"/>
-                            </group>
-                            <group>
-                                <field name="postalcode"/>
-                            </group>
-                            <group>
-                                <field name="expected_price"/>
-                            </group>
-                            <group>
-                                <field name="best_price"/>
-                            </group>
-                            <group>
-                                <field name="selling_price"/>
-                            </group>
-                            <group>
-                                <field name="date_availability"/>
-                            </group>
-                            <notebook>
-                                <page string="Description">
-                                    <group>
-                                        <field name="description" placeholder="Description Here"/>
-                                    </group>
-                                    <group>
-                                        <field name="bedrooms"/>
-                                    </group>
-                                    <group>
-                                        <field name="facades"/>
-                                    </group>
-                                    <group>
-                                        <field name="living_area"/>
-                                    </group>
-                                    <group>
-                                        <field name="garage"/>
-                                    </group>
-                                    <group>
-                                        <field name="garden"/>
-                                    </group>
-                                    <group>
-                                        <field name="garden_area" attrs="{'invisible': [('garden','=', False)]}"/>
-                                    </group>
-                                    <group>
-                                        <field name="garden_orientation" attrs="{'invisible': [('garden','=', False)]}"/>
-                                    </group>
-                                    <group>
-                                        <field name="total_area"/>
-                                    </group>
-                                    <group>
-                                        <field name="state"/>
-                                    </group>
-                                </page>
-                                <page string="Offers">
-                                    <field name="offer_ids" attrs="{'readonly':[('state','in',['offer_accepted','sold','cancle'])]}"/>
-                                </page>
-                                <page string="Other Info">
-                                    <group>
-                                        <group>
-                                            <field name="buyer_id"/>
-                                            <field name="user_id"/>
-                                        </group>
-                                    </group>
-                                </page>
-                            </notebook>
+                            <field name="property_type_id" options="{'no_create': True, 'no_edit': True}"/>
                         </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-        <!-- Search -->
-        <record id="estate_search_reason_view_form" model="ir.ui.view">
-            <field name="name">estate.recurring.plan</field>
-            <field name="model">estate.recurring.plan</field>
-            <field name="arch" type="xml">
-                <search string="Test">
-                    <field name="name"/>
-                    <field name="property_type_id"/>
-                    <field name="bedrooms" />
-                    <field name="facades" />
-                    <field name="postalcode"/>
-                    <field name="expected_price"/>
-                    <field name="living_area" string="Living area greater than" filter_domain="[('living_area','>=',self)]" />
-                    <!-- group by and filter Tag -->
-                    <separator/>
-                        <filter name="available" string="Available" domain="[('state','in',['new','offer_received'])]"/>
-                        <filter string="State" name="inactive" domain="[('state', 'in', ['new', 'offer_received'])]"/>
-                        <group expand="1" string="Group By">
-                            <filter string="Postal Code" name="provider" context="{'group_by':'postalcode'}"/>
-                                <!-- name in filter is logical name, use for inheritance hook -->
+                        <group>
+                            <field name="postalcode"/>
                         </group>
-                </search>
-            </field>    
-        </record>
-        <!-- kanban view -->
-        <record id="estate_kanban_view" model="ir.ui.view">
-            <field name="name">estate.recurring.plan</field>
-            <field name="model">estate.recurring.plan</field>
-            <field name="arch" type="xml">
-                <kanban default_group_by="property_type_id" records_draggable="0">
-                    <field name='state'/>
-                    <templates>
-                        <t t-name="kanban-box">
-                            <div class="oe_kanban_global_click">
-                                <div>
-                                    <h2><field name="name"/></h2>
-                                </div>
-                                <div>
-                                    Expected Price : <field name="expected_price"/>
-                                </div>
-                                <div t-if="record.state.raw_value == 'offer_received'">
-                                    Best Price : <field name="best_price"/>
-                                </div>
-                                <div t-if="record.state.raw_value=='offer_accepted'">
-                                    Selling Price : <field name="selling_price"/>
-                                </div>
-                                <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                        <group>
+                            <field name="expected_price"/>
+                        </group>
+                        <group>
+                            <field name="best_price"/>
+                        </group>
+                        <group>
+                            <field name="selling_price"/>
+                        </group>
+                        <group>
+                            <field name="date_availability"/>
+                        </group>
+                        <notebook>
+                            <page string="Description">
+                                <group>
+                                    <field name="description" placeholder="Description Here"/>
+                                </group>
+                                <group>
+                                    <field name="bedrooms"/>
+                                </group>
+                                <group>
+                                    <field name="facades"/>
+                                </group>
+                                <group>
+                                    <field name="living_area"/>
+                                </group>
+                                <group>
+                                    <field name="garage"/>
+                                </group>
+                                <group>
+                                    <field name="garden"/>
+                                </group>
+                                <group>
+                                    <field name="garden_area" attrs="{'invisible': [('garden','=', False)]}"/>
+                                </group>
+                                <group>
+                                    <field name="garden_orientation" attrs="{'invisible': [('garden','=', False)]}"/>
+                                </group>
+                                <group>
+                                    <field name="total_area"/>
+                                </group>
+                                <group>
+                                    <field name="state"/>
+                                </group>
+                            </page>
+                            <page string="Offers">
+                                <field name="offer_ids" attrs="{'readonly':[('state','in',['offer_accepted','sold','cancle'])]}"/>
+                            </page>
+                            <page string="Other Info">
+                                <group>
+                                    <group>
+                                        <field name="buyer_id"/>
+                                        <field name="user_id"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Search -->
+    <record id="estate_search_reason_view_form" model="ir.ui.view">
+        <field name="name">estate.recurring.plan</field>
+        <field name="model">estate.recurring.plan</field>
+        <field name="arch" type="xml">
+            <search string="Test">
+                <field name="name"/>
+                <field name="property_type_id"/>
+                <field name="bedrooms" />
+                <field name="facades" />
+                <field name="postalcode"/>
+                <field name="expected_price"/>
+                <field name="living_area" string="Living area greater than" filter_domain="[('living_area','>=',self)]" />
+                <!-- group by and filter Tag -->
+                <separator/>
+                <filter name="available" string="Available" domain="[('state','in',['new','offer_received'])]"/>
+                <filter string="State" name="inactive" domain="[('state', 'in', ['new', 'offer_received'])]"/>
+                <group expand="1" string="Group By">
+                    <filter string="Postal Code" name="provider" context="{'group_by':'postalcode'}"/>
+                    <!-- name in filter is logical name, use for inheritance hook -->
+                </group>
+            </search>
+        </field>
+    </record>
+    <!-- kanban view -->
+    <record id="estate_kanban_view" model="ir.ui.view">
+        <field name="name">estate.recurring.plan</field>
+        <field name="model">estate.recurring.plan</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="property_type_id" records_draggable="0">
+                <field name='state'/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div>
+                                <h2>
+                                    <field name="name"/>
+                                </h2>
                             </div>
-                        </t>
-                    </templates>
-                </kanban>
-            </field>
-        </record>
-    </odoo>
+                            <div>
+                                    Expected Price : <field name="expected_price"/>
+                            </div>
+                            <div t-if="record.state.raw_value == 'offer_received'">
+                                    Best Price : <field name="best_price"/>
+                            </div>
+                            <div t-if="record.state.raw_value=='offer_accepted'">
+                                    Selling Price : <field name="selling_price"/>
+                            </div>
+                            <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+</odoo>
