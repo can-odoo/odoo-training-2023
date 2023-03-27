@@ -26,7 +26,7 @@ class CarDekhoProperty(models.Model):
           help="Type is used to separate")
      booking_date_upto=fields.Date()
      car_price = fields.Float()
-     state = fields.Selection(string='State',
+     state = fields.Selection(string='Status',
                               selection=[('new','New'),
                                          ('sold','Sold'),
                                          ('cancel','Cancel'),
@@ -67,7 +67,7 @@ class CarDekhoProperty(models.Model):
           if self.t_area > 40.00:
                self.state='modified'
           else : 
-               self.state=False
+               self.state='new'
 
      @api.onchange('siting_capacity')
      def _change_engine_freq(self):
