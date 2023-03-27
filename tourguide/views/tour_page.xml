@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="tour_view">
+        <t t-call="website.layout">
+            <t t-set="title">Tours</t>
+            <div class="oe_structure">
+                <div class="container">
+                    <div class="row">
+                        <t t-foreach="tours" t-as="tour">
+                            <div class="col-sm-4">
+                                <div class="card mt-4" style="width: 18rem;">
+                                    <img class="card-img-top" src="/tourguide/static/img/tour1.jpg"
+                                        alt="Card image cap" style="height: 15rem;" />
+                                    <div class="card-body">
+                                        <a t-attf-href="/tours/{{ slug(tour) }}"
+                                            class="btn btn-primary" t-field="tour.name" />
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="tour_detail">
+        <t t-call="website.layout">
+            <t t-set="title">Tour Detail</t>
+            <div class="oe_structure">
+                <div class="container">
+                    <t t-foreach="details" t-as="detail">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" src="/tourguide/static/img/tour1.jpg"
+                            alt="Card image cap" style="height: 15rem;" />
+                            <ul class="list-group list-group-flush ">
+                                <li class="list-group-item">
+                                    <h4 class="card-title">
+                                        <span t-field="detail.name" />
+                                    </h4>
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Destination: </b>
+                                    <span t-field="detail.destination" />
+                                    <br />
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Days: </b>
+                                    <span t-field="detail.duration" />
+                                    <br />
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Type: </b>
+                                    <span t-field="detail.tour_type" />
+                                    <br />
+                                </li>
+                                <li class="list-group-item">
+                                    <b>Tour Guide: </b>
+                                    <span t-field="detail.guide_id" />
+                                    <br />
+                                </li>
+                            </ul>
+                        </div>
+                    </t>
+                </div>
+            </div>
+            <div class="oe_structure" />
+        </t>
+    </template>
+
+</odoo>
