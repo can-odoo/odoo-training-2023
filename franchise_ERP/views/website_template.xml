@@ -1,7 +1,20 @@
 <odoo>
     <template id="index_website">
         <t t-call="website.layout">
+
             <div class="container">
+                <header>
+                    <form method="get" action='/store' align="right" class="m-5 row">
+                        <div class="col-8">
+                            <input class="form-control" type="text" placeholder="India"
+                                name="location"></input>
+                        </div>
+                        <div class="col-4">
+                            <button class="btn btn-info" type="submit">Search</button>
+                        </div>
+                    </form>
+                </header>
+
                 <div class="m-5" align="center">
                     <div class="title">
                         <h3>Stores List</h3>
@@ -40,9 +53,16 @@
 
     <template id="store_properties_website">
         <t t-call="website.layout">
-            <div class="container" align="center">
-                <div class="row m-5">
 
+            <div class="container" align="center">
+
+                <div class="m-5" align="center">
+                    <div class="title">
+                        <h3>Stores Details</h3>
+                    </div>
+                </div>
+
+                <div class="row m-5 justify-content-between">
                     <div class="card col-6" style="width: 18rem;">
                         <img t-att-src='image_data_uri(store.image)' class="card-img-top" alt="..." />
                         <div class="card-body">
@@ -53,28 +73,38 @@
                     <div class="col-6">
                         <table class="table">
                             <tbody>
-                              <tr>
-                                <th scope="row">Name</th>
-                                <td><p t-field="store.name"/></td>
-                              </tr>
-                              <tr>
-                                <th scope="row">Owner</th>
-                                <td><p t-field="store.franchise_owner"/></td>
-                              </tr>
-                              <tr>
-                                <th scope="row">Manager</th>
-                                <td><p t-field="store.store_manager"/></td>
-                              </tr>
-                              <tr>
-                                <th scope="row">Location </th>
-                                <td><p t-field="store.location"/></td>
-                              </tr>
-                              <tr>
-                                <th scope="row">Opening Date</th>
-                                <td><p t-field="store.opening_date"/></td>
-                              </tr>
+                                <tr>
+                                    <th scope="row">Name</th>
+                                    <td>
+                                        <p t-field="store.name" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Owner</th>
+                                    <td>
+                                        <p t-field="store.franchise_owner" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Manager</th>
+                                    <td>
+                                        <p t-field="store.store_manager" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Location </th>
+                                    <td>
+                                        <p t-field="store.location" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Opening Date</th>
+                                    <td>
+                                        <p t-field="store.opening_date" />
+                                    </td>
+                                </tr>
                             </tbody>
-                          </table> 
+                        </table>
                     </div>
 
                 </div>
