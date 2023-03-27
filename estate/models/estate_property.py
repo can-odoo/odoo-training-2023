@@ -28,7 +28,7 @@ class EstateProperty(models.Model):
     buyer = fields.Many2one('res.partner',copy =False)
     offer_ids = fields.One2many('estate.property.offer','property_id')
     total_area = fields.Float('Total area ( sqm )',compute="_compute_total")
-    best_offer = fields.Float("Best offer",compute="_compute_bestoffer")
+    best_offer = fields.Float("Best offer",compute="_compute_bestoffer", store=True)
 
 
     @api.depends('garden_area','living_area')
