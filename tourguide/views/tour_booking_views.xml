@@ -15,7 +15,7 @@
         <field name="model">tour.booking</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="customer_id"/>
+                <field name="name"/>
                 <field name="booking_date"/>
                 <field name="tour_guide_id"/>
                 <field name="booking_status"/>
@@ -36,7 +36,7 @@
                 </header>
                 <sheet>
                     <group>
-                        <field name="customer_id"/>
+                        <field name="name"/>
                         <field name="booking_date"/>
                         <field name="tour_guide_id"/>
                         <field name="guide"/>
