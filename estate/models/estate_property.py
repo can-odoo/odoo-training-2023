@@ -38,7 +38,7 @@ class EstateProperty(models.Model):
 	buyer_id = fields.Many2one('res.partner', string='Buyer', copy=False)
 	tag_ids = fields.Many2many('estate.property.tag') 
 	offer_ids = fields.One2many('estate.property.offer', 'property_id')
-	
+		
 	# for sum of two values
 	@api.depends("living_area", "garden_area")
 	def _sum_total(self):
