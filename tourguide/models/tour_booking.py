@@ -5,7 +5,7 @@ class TourBooking(models.Model):
     _name = 'tour.booking'
     _description = 'Tour Bookings'
 
-    customer_id = fields.Many2one('Customer Name', 'res.paertner')
+    name = fields.Char(string='Customer Name')
     booking_date = fields.Date('Booking Date', default=fields.Date.today(), required=True)
     booking_status = fields.Selection([
         ('draft', 'Draft'),
