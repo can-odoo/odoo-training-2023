@@ -4,7 +4,7 @@
     <field name="website_published">True</field>
     <field name="url">/properties</field>
     <field name="type">qweb</field>
-    <field name="key">theme_tutorial.services_page</field>
+    <field name="key">estate_property.services_page</field>
 </record>
 
 <record id="property_page_link" model="website.menu">

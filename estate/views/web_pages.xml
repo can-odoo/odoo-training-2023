@@ -9,7 +9,7 @@
                     <form method="GET" class="d-flex">
                         <label class="sr-only" for="input">Name</label>
                         <input style="margin-left:10px;" type="date" class="form-control"
-                            id="inputdate" name="inputdate"/>
+                            id="inputdate" name="inputdate" />
                         <button style="width:70%; margin-left:5px;" type="submit"
                             class="btn btn-primary">Listed After</button>
                     </form>
@@ -29,8 +29,8 @@
                                             <h5 class="card-title fw-bolder" t-field="property.name">
                                             </h5>
                                         </a>
-                                        <span t-field = "property.date_availability" />.
-                                    </div>
+                                        <span
+                                            t-field="property.date_availability" />. </div>
                                 </div>
                             </div>
                         </t>
