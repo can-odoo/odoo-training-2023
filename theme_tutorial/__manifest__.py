@@ -20,5 +20,8 @@
         # 'web._assets_primary_variables': [
         #     'theme_tutorial/static/scss/primary_variables.scss',
         # ],
+        'website.assets_editor': [
+            'theme_tutorial/static/js/tutorial_editor.js',
+        ],
     },
 }
