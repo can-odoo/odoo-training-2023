@@ -3,7 +3,7 @@
     <template id="snippet_testimonial_opt" name="Snippet Testimonial Options"
         inherit_id="website.snippet_options">
         <xpath expr="//div[@data-js='Box']" position="after">
-            <div data-selector=".s_testimonial"> <!-- Options group -->
+            <div data-js="s_testimonial_options" data-selector=".s_testimonial"> <!-- Options group -->
                 <we-select string="color">
                     <we-button class="dropdown-item" data-select-class="opt_shadow">Shadow
                         Images</we-button>
