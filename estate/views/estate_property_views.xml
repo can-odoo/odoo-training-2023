@@ -5,7 +5,7 @@
     <record id="estate_property_action" model="ir.actions.act_window">
         <field name="name">Properties</field>
         <field name="res_model">estate.property</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">tree,kanban,form</field>
         <field name="context">{'search_default_available':True}</field>
     </record>
 
@@ -18,7 +18,7 @@
         <field name="name">estate.property.kanban</field>
         <field name="model">estate.property</field>
         <field name="arch" type="xml">
-            <kanban default_group_by="property_type_id" records_draggable="false">
+            <kanban default_group_by="property_type_id" archivable="false" records_draggable="false">
                 <field name="state"/>
                 <templates>
                     <t t-name="kanban-box">
@@ -78,9 +78,10 @@
                     <sheet>
                         <h1>
                             <field name="name" placeholder="Enter Property Name"/>
+                            <field name="image" widget="image" class="oe_avatar"/>
                         </h1>
                         <div style="height: 15px"/>
-                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}" placeholder="Enter Property Tag"/>
                         <div style="height: 15px"/>
                         <group>
                             <group>
