@@ -9,6 +9,7 @@ class EstateProperty(models.Model):
     _order = "id desc"
 
     name = fields.Char('Property Name' , required=True)
+    image = fields.Image()
     description = fields.Char('Description', required=True)
     postcode = fields.Char('Postcode' , required=True)
     date_availability = fields.Date('Date of Availability' , default=fields.Date.add(fields.Date.today(),months=3) , copy=False)
