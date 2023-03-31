@@ -40,3 +40,9 @@ class Property(http.Controller):
         return http.request.render("estate.property_offers", {
             'offers': offer
         })
+    
+    # @http.route('/make_offer/<int:property_id>', type='http', auth="public", website=True)
+    # def make_offer(self, property_id, **kwargs):
+    #     property_obj = http.request.env['estate.property'].sudo().browse(property_id)
+    #     return http.request.render('estate.offer_form', {'property_obj': property_obj})
+
