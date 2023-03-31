@@ -4,7 +4,8 @@
         <t t-call="website.layout">
             <t t-set="title">Properties</t>
             <form class="mt-4 d-flex mx-4 pb-4" method="GET">
-                <input type="date" id="filterDate" name="search" class="form-control" style="width: 150px;" />
+                <input type="date" id="filterDate" name="search" class="form-control"
+                    style="width: 150px;" />
                 <input type="submit" value="Listed After" class="btn btn-primary ms-2" />
             </form>
             <div class="oe_structure">
@@ -74,6 +75,8 @@
                     <div class="d-flex justify-content-center m-4">
                         <a t-attf-href="/offers/{{slug(property)}}" class="btn btn-info "> See
                             Offers </a>
+                        <!-- <a t-attf-href="/make_offer/{{slug(property)}}" class="btn btn-success">Make
+                            Offer</a> -->
                     </div>
                 </div>
             </div>
@@ -121,5 +124,24 @@
             </div>
         </t>
     </template>
+
+    <!-- <template id="offer_form">
+        <form class="mt-4 d-flex mx-4 pb-4" method="POST">
+            <input type="hidden" name="property_id" t-att-value="property.id" />
+            <div class="mb-3">
+                <label for="partner_name" class="form-label">Partner Name</label>
+                <input type="text" class="form-control" id="partner_name" name="partner_name"/>
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" class="form-control" id="price" name="price" />
+            </div>
+            <div class="mb-3">
+                <label for="validity" class="form-label">Validity</label>
+                <input type="date" class="form-control" id="validity" name="validity" />
+            </div>
+            <input type="submit" value="Make Offer" class="btn btn-primary ms-2" />
+        </form>
+    </template> -->
 
 </odoo>
