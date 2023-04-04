@@ -84,9 +84,11 @@
                         statusbar_visible="new,offer_received,offer_accepted,    sold" />
                 </header>
                 <sheet>
+                    <widget name="web_ribbon" title="SOLD" bg_color="bg-success" states='sold'/>
+                    <widget name="web_ribbon" title="CANCELED" bg_color="bg-danger" states='canceled'/>
                     <h1>
                         <field name="name" placeholder="Enter Property Name" />
-                        <field name="image" widget="image" class="oe_avatar" />
+                        <field name="image" widget="image" style="width: 250px; margin-left: 200px" />
                     </h1>
                     <div style="height: 15px" />
                     <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"

@@ -31,17 +31,17 @@ class EstatePropertyOffer(models.Model):
 
     def action_accept(self):
         for record in self:
-            record.status = 'accepted'
-            record.property_id.buyer_id = record.partner_id
-            record.property_id.selling_price = record.price
-            record.property_id.state = 'offer_accepted'
+            for record in self.property_id.offer_ids:
+                record.status = "refused"
+            self.status = "accepted"
+            self.property_id.buyer_id = self.partner_id
+            self.property_id.selling_price = self.price
+            self.property_id.state = "offer_accepted"
         return True
     
     def action_refuse(self):
         for record in self:
             record.status = 'refused'
-            record.property_id.selling_price = 0
-            record.property_id.buyer_id = 0
         return True
 
     _sql_constraints = [
